@@ -65,10 +65,40 @@ final class CaptureViewController: UIViewController {
         priceCheck.addListener(self)
         priceCheck.enable()
 
-        productCatalog.update(completion: { _ in })
+        productCatalog.update(completion: { result in
+            switch result {
+            case .failure(let error):
+                print("Product catalog update failed: \(error)")
+            case .success:
+                print("Product catalog update finished")
+            }
+        })
 
         self.priceCheck = priceCheck
         self.captureView = captureView
+
+        // Create an augmented overlay visual that will
+        // be shown over price labels.
+        priceCheck.setOverlay(
+            PriceCheckOverlay(
+                viewfinder: RectangularViewfinder(
+                    style: .rounded,
+                    lineStyle: .bold
+                ),
+                correctPriceBrush: ScanditShelf.Brush(
+                    fillColor: .green.withAlphaComponent(0.33),
+                    strokeColor: .green,
+                    strokeWidth: 2),
+                wrongPriceBrush: ScanditShelf.Brush(
+                    fillColor: .red.withAlphaComponent(0.33),
+                    strokeColor: .red,
+                    strokeWidth: 2),
+                unknownProductBrush: ScanditShelf.Brush(
+                    fillColor: .gray.withAlphaComponent(0.33),
+                    strokeColor: .gray,
+                    strokeWidth: 2)
+            )
+        )
     }
 }
 
