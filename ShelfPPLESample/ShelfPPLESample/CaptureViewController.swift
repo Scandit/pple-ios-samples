@@ -65,7 +65,14 @@ final class CaptureViewController: UIViewController {
         priceCheck.addListener(self)
         priceCheck.enable()
 
-        productCatalog.update(completion: { _ in })
+        productCatalog.update(completion: { result in
+            switch result {
+            case .failure(let error):
+                print("Product catalog update failed: \(error)")
+            case .success:
+                print("Product catalog update finished")
+            }
+        })
 
         self.priceCheck = priceCheck
         self.captureView = captureView
