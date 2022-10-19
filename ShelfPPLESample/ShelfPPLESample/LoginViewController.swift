@@ -1,17 +1,30 @@
-//
-//  This file is part of the Scandit ShelfView Sample
-//
-//  Copyright (C) 2022- Scandit AG. All rights reserved.
-//
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import UIKit
 import ScanditShelf
 
 final class LoginViewController: UIViewController {
+
     @IBOutlet private weak var usernameField: UITextField!
+
     @IBOutlet private weak var passwordField: UITextField!
+
     @IBOutlet private weak var loginButton: UIButton!
+
     @IBOutlet private weak var invalidCredentialsLabel: UILabel!
+
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
 
     private let authentication = Authentication.shared
@@ -38,7 +51,7 @@ final class LoginViewController: UIViewController {
                 self.perform(segue: .showStores)
             case .failure(let error):
                 self.onInvalidCredentials()
-                print(error)
+                self.showToast(message: error.localizedDescription)
             }
         }
     }

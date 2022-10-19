@@ -14,6 +14,7 @@
 		C062981427FEA948009EE5F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C062981227FEA948009EE5F2 /* Main.storyboard */; };
 		C062981627FEA94A009EE5F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C062981527FEA94A009EE5F2 /* Assets.xcassets */; };
 		C062981927FEA94A009EE5F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C062981727FEA94A009EE5F2 /* LaunchScreen.storyboard */; };
+		C0CBA92D28EFF4ED0038BC3B /* UIViewController+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBA92C28EFF4ED0038BC3B /* UIViewController+Toast.swift */; };
 		C0D9253F289BF4A300332E9E /* ScanditBarcodeCapture.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D9253B289BF4A300332E9E /* ScanditBarcodeCapture.xcframework */; };
 		C0D92540289BF4A300332E9E /* ScanditBarcodeCapture.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0D9253B289BF4A300332E9E /* ScanditBarcodeCapture.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0D92547289BF4AD00332E9E /* ScanditCaptureCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D9253C289BF4A300332E9E /* ScanditCaptureCore.xcframework */; };
@@ -57,6 +58,7 @@
 		C062981527FEA94A009EE5F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C062981827FEA94A009EE5F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C062981A27FEA94A009EE5F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0CBA92C28EFF4ED0038BC3B /* UIViewController+Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Toast.swift"; sourceTree = "<group>"; };
 		C0D92537289BEED500332E9E /* ScanditShelf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ScanditShelf.xcframework; path = ../ScanditSDK/ScanditShelf.xcframework; sourceTree = "<group>"; };
 		C0D9253B289BF4A300332E9E /* ScanditBarcodeCapture.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ScanditBarcodeCapture.xcframework; path = ../ScanditSDK/ScanditBarcodeCapture.xcframework; sourceTree = "<group>"; };
 		C0D9253C289BF4A300332E9E /* ScanditCaptureCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ScanditCaptureCore.xcframework; path = ../ScanditSDK/ScanditCaptureCore.xcframework; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				C01BC0C0280E820D005BC2EA /* CaptureViewController.swift */,
 				C01BC0C4280E9432005BC2EA /* LoginViewController.swift */,
 				D3EE3D642822D4E1007A25FC /* StoreListViewController.swift */,
+				C0CBA92C28EFF4ED0038BC3B /* UIViewController+Toast.swift */,
 				C0EEAFE628B3F3750003F0D7 /* ScanditPriceLabel.bundle */,
 				C062981227FEA948009EE5F2 /* Main.storyboard */,
 				C062981527FEA94A009EE5F2 /* Assets.xcassets */,
@@ -208,6 +211,7 @@
 				C01BC0C5280E9432005BC2EA /* LoginViewController.swift in Sources */,
 				D3D3694F286DCEFC006FD7A0 /* Segues.swift in Sources */,
 				D3EE3D652822D4E1007A25FC /* StoreListViewController.swift in Sources */,
+				C0CBA92D28EFF4ED0038BC3B /* UIViewController+Toast.swift in Sources */,
 				C062980D27FEA948009EE5F2 /* AppDelegate.swift in Sources */,
 				C062980F27FEA948009EE5F2 /* SceneDelegate.swift in Sources */,
 				C01BC0C1280E820D005BC2EA /* CaptureViewController.swift in Sources */,

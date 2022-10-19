@@ -1,28 +1,40 @@
-//
-//  This file is part of the Scandit ShelfView Sample
-//
-//  Copyright (C) 2022- Scandit AG. All rights reserved.
-//
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import UIKit
-import ScanditBarcodeCapture
 import ScanditShelf
 
 final class CaptureViewController: UIViewController {
 
-    var store: Store?
+    var storeName: String?
+
+    var productCatalog: ProductCatalog?
 
     @IBOutlet private weak var titleLabel: UILabel!
+
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
 
     private let authentication = Authentication.shared
+
     private var captureView: CaptureView?
+
     private var priceCheck: PriceCheck?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleLabel.text = store?.name
+        titleLabel.text = storeName
 
         setupCaptureViewAndPriceCheck()
     }
@@ -41,7 +53,7 @@ final class CaptureViewController: UIViewController {
 
             switch result {
             case .failure(let error):
-                print(error)
+                self.showToast(message: error.localizedDescription)
                 fallthrough
             case .success:
                 self.perform(segue: .unwindToLogin)
@@ -52,27 +64,22 @@ final class CaptureViewController: UIViewController {
     private func setupCaptureViewAndPriceCheck() {
         priceCheck?.dispose()
 
-        guard let store = store else { return }
-
-        let catalog = Catalog.shared
-        let productCatalog = catalog.productCatalog(storeID: store.id)
+        guard let productCatalog = productCatalog else { return }
 
         let captureView = CaptureView(frame: view.bounds)
         captureView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.insertSubview(captureView, at: 0)
 
+        let feedback = PriceCheckFeedback(
+            correctPriceFeedback: Feedback.default,
+            wrongPriceFeedback: nil,
+            unknownProductFeedback: nil
+        )
+
         let priceCheck = PriceCheck(productCatalog: productCatalog, captureView: captureView)
         priceCheck.addListener(self)
+        priceCheck.setFeedback(feedback)
         priceCheck.enable()
-
-        productCatalog.update(completion: { result in
-            switch result {
-            case .failure(let error):
-                print("Product catalog update failed: \(error)")
-            case .success:
-                print("Product catalog update finished")
-            }
-        })
 
         self.priceCheck = priceCheck
         self.captureView = captureView
@@ -102,7 +109,7 @@ final class CaptureViewController: UIViewController {
     }
 }
 
-extension CaptureViewController: AuthenticationListener {
+extension CaptureViewController: AuthenticationEventListener {
 
     func onAuthenticationFailure(event: AuthenticationFailureEvent) {
         print(event)
