@@ -71,7 +71,7 @@ final class CaptureViewController: UIViewController {
         view.insertSubview(captureView, at: 0)
 
         let feedback = PriceCheckFeedback(
-            correctPriceFeedback: Feedback.default,
+            correctPriceFeedback: PriceCheckFeedback.defaultPriceCheckFeedback.correctPriceFeedback,
             wrongPriceFeedback: nil,
             unknownProductFeedback: nil
         )
