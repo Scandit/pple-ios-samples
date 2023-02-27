@@ -87,20 +87,8 @@ final class CaptureViewController: UIViewController {
         // Create an augmented overlay visual that will be shown over price labels.
         // By default, price labels are sought on the whole capture view. If you want to limit the scan area,
         // pass a non-nil LocationSelection to PriceCheckOverlay's constructor.
-        let overlay = BasicPriceCheckOverlay(
-            correctPriceBrush: ScanditShelf.Brush(
-                fillColor: .green.withAlphaComponent(0.33),
-                strokeColor: .green,
-                strokeWidth: 2),
-            wrongPriceBrush: ScanditShelf.Brush(
-                fillColor: .red.withAlphaComponent(0.33),
-                strokeColor: .red,
-                strokeWidth: 2),
-            unknownProductBrush: ScanditShelf.Brush(
-                fillColor: .gray.withAlphaComponent(0.33),
-                strokeColor: .gray,
-                strokeWidth: 2)
-        )
+        let overlay = AdvancedPriceCheckOverlay(delegate: self)
+        
         priceCheck.addOverlay(overlay)
 
         let viewfinderConfiguration = ViewfinderConfiguration(
@@ -110,6 +98,18 @@ final class CaptureViewController: UIViewController {
             )
         )
         priceCheck.setViewfinderConfiguration(viewfinderConfiguration)
+    }
+}
+
+extension CaptureViewController: PriceCheckAdvancedOverlayDelegate {
+    func viewForPriceCheckResult(priceCheckResult: PriceCheckResult) -> UIView? {
+        guard let correctPrice = priceCheckResult.correctPrice else {
+            return UIImageView(image: .unkownProductMark)
+        }
+
+        let image: UIImage = correctPrice == priceCheckResult.capturedPrice ? .correctPriceMark : .wrongPriceMark
+
+        return UIImageView(image: image)
     }
 }
 
