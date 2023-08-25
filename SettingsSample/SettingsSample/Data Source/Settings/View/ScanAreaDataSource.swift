@@ -57,16 +57,16 @@ class ScanAreaDataSource: DataSource {
     lazy var shouldShowScanAreaGuides: Row = {
         Row(title: "Show Scan Area Guides",
             kind: .switch,
-            getValue: { SettingsManager.current.shouldShowScanAreaGuides },
+            getValue: { SettingsManager.current.viewfinderConfiguration.viewfinderConfiguration.shouldShowScanAreaGuides },
             didChangeValue: {
-                SettingsManager.current.shouldShowScanAreaGuides = $0
+            SettingsManager.current.viewfinderConfiguration.viewfinderConfiguration.shouldShowScanAreaGuides = $0
             })
     }()
 
     // MARK: Section: Setters and Getters
 
     func setRectangularWidth(width: FloatWithUnit) {
-        SettingsManager.current.locationSelection =
+        SettingsManager.current.viewfinderConfiguration.locationSelection =
             RectangularLocationSelection(
                 size: SizeWithUnit(
                     width: width,
@@ -75,7 +75,7 @@ class ScanAreaDataSource: DataSource {
     }
 
     func setRectangularHeight(height: FloatWithUnit) {
-        SettingsManager.current.locationSelection =
+        SettingsManager.current.viewfinderConfiguration.locationSelection =
             RectangularLocationSelection(
                 size: SizeWithUnit(
                     width: getRectangularWidth(),
@@ -85,7 +85,7 @@ class ScanAreaDataSource: DataSource {
 
     func getRectangularHeight() -> FloatWithUnit {
         let currentHeight =
-        (SettingsManager.current.locationSelection as? RectangularLocationSelection)?.sizeWithUnitAndAspect.widthAndHeight?.height
+        (SettingsManager.current.viewfinderConfiguration.locationSelection as? RectangularLocationSelection)?.sizeWithUnitAndAspect.widthAndHeight?.height
 
         let fullHeight = FloatWithUnit(value: 1, unit: .fraction)
 
@@ -94,7 +94,7 @@ class ScanAreaDataSource: DataSource {
 
     func getRectangularWidth() -> FloatWithUnit {
         let currentWidth =
-            (SettingsManager.current.locationSelection as? RectangularLocationSelection)?.sizeWithUnitAndAspect.widthAndHeight?.width
+        (SettingsManager.current.viewfinderConfiguration.locationSelection as? RectangularLocationSelection)?.sizeWithUnitAndAspect.widthAndHeight?.width
 
         let fullWidth = FloatWithUnit(value: 1, unit: .fraction)
 

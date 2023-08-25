@@ -37,7 +37,7 @@ enum AimerViewfinderFrameColor: CaseIterable, CustomStringConvertible {
 
     var uiColor: UIColor {
         switch self {
-        case .default: return SettingsManager.current.defaultAimerViewfinderFrameColor
+        case .default: return SettingsManager.current.aimerViewfinder.defaultViewfinder.frameColor
         case .blue: return .blue
         case .red: return .red
         }

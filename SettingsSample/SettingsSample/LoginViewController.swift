@@ -65,13 +65,15 @@ final class LoginViewController: UIViewController {
         ) { [weak self] result in
             guard let self = self else { return }
 
-            self.activityIndicator.stopAnimating()
-            switch result {
-            case .success:
-                self.perform(segue: .showStores)
-            case .failure(let error):
-                self.onInvalidCredentials()
-                self.showToast(message: error.localizedDescription)
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                switch result {
+                case .success:
+                    self.perform(segue: .showStores)
+                case .failure(let error):
+                    self.onInvalidCredentials()
+                    self.showToast(message: error.localizedDescription)
+                }
             }
         }
     }

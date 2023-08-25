@@ -52,6 +52,7 @@ final class SettingsViewController: UIViewController {
               let productCatalog = productCatalog else { return }
 
         controller.storeName = store.name
+        controller.currency = store.currency
         controller.productCatalog = productCatalog
     }
 

@@ -37,7 +37,7 @@ enum RectangularViewfinderColor: CaseIterable, CustomStringConvertible {
 
     var uiColor: UIColor {
         switch self {
-        case .default: return SettingsManager.current.defaultRectangularViewfinderColor
+        case .default: return SettingsManager.current.rectangularViewfinder.defaultViewfinder.color
         case .blue: return .blue
         case .black: return .black
         }

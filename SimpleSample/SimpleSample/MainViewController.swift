@@ -29,6 +29,8 @@ final class MainViewController: UIViewController {
     private var priceCheck: PriceCheck?
     private var captureView: CaptureView?
 
+    private var currency: Currency?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -77,25 +79,27 @@ final class MainViewController: UIViewController {
         // Get/Update the list of stores by using the Catalog singleton object of the PPLE SDK.
         // Pass a CompletionHandler to the getStores method for handling API result.
         Catalog.shared.getStores { [weak self] result in
-            switch result {
-            case .success(let stores):
-                guard !stores.isEmpty else {
-                    self?.updateStatus(message: .storesEmpty)
-                    return
-                }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let stores):
+                    if stores.isEmpty {
+                        self?.updateStatus(message: .storesEmpty)
+                        return
+                    }
 
-                // Get products for a selected store from your organization.
-                // For simplicity reasons, below we select the first store on the list.
-                self?.getProducts(for: stores[0])
-            case .failure:
-                self?.updateStatus(message: .storeDownloadFailed)
+                    // Get products for a selected store from your organization.
+                    // For simplicity reasons, below we select the first store on the list.
+                    self?.getProducts(for: stores[0])
+                case .failure:
+                    self?.updateStatus(message: .storeDownloadFailed)
+                }
             }
         }
     }
 
     private func getProducts(for store: Store) {
         title = store.name
-
+        currency = store.currency
         // Get/Update the Product items for a given Store.
 
         // First create the ProductCatalog object.
@@ -173,30 +177,39 @@ final class MainViewController: UIViewController {
 extension MainViewController: PriceCheckListener {
     func onCorrectPrice(result: PriceCheckResult) {
         // Handle result that a Product label was scanned with correct price
-        showToast(message: result.message)
+        showToast(result: result)
     }
 
     func onWrongPrice(result: PriceCheckResult) {
         // Handle result that a Product label was scanned with wrong price
-        showToast(message: result.message)
+        showToast(result: result)
     }
 
     func onUnknownProduct(result: PriceCheckResult) {
         // Handle result that a Product label was scanned for an unknown Product
-        showToast(message: result.message)
+        showToast(result: result)
+    }
+
+    private func showToast(result: PriceCheckResult) {
+        guard let currency else { return }
+
+        showToast(message: result.message(currency: currency))
+    }
+
+    func onSessionUpdate(_ session: ScanditShelf.PriceLabelSession, frameData: FrameData) {
     }
 }
 
 private extension PriceCheckResult {
-    var message: String {
+    func message(currency: Currency) -> String {
         switch correctPrice {
         case .none:
-            return "Unrecognized product - captured price: \(capturedPrice.formattedPrice)"
+            return "Unrecognized product - captured price: \(capturedPrice.formattedPrice(currency: currency))"
         case capturedPrice:
-            return [name, "Correct Price: \(capturedPrice.formattedPrice)"]
+            return [name, "Correct Price: \(capturedPrice.formattedPrice(currency: currency))"]
                 .compactMap { $0 }.joined(separator: "\n")
         case let price?:
-            return [name, "Wrong Price: \(capturedPrice.formattedPrice), should be \(price.formattedPrice )"]
+            return [name, "Wrong Price: \(capturedPrice.formattedPrice(currency: currency)), should be \(price.formattedPrice(currency: currency))"]
                 .compactMap { $0 }.joined(separator: "\n")
         default:
             return ""
@@ -205,7 +218,7 @@ private extension PriceCheckResult {
 }
 
 private extension Double {
-    var formattedPrice: String {
-        String(format: "%.2f", self)
+    func formattedPrice(currency: Currency) -> String {
+        String(format: "\(currency.symbol)%.\(currency.decimalPlaces)f", self)
     }
 }

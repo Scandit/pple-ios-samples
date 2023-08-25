@@ -60,12 +60,12 @@ final class StoreListViewController: UIViewController {
             guard let self else { return }
 
             DispatchQueue.main.async {
-                self.handleLogOut(result: result)
+                self.handleLogout(result: result)
             }
         }
     }
 
-    private func handleLogOut(result: Result<Void, Error>) {
+    private func handleLogout(result: Result<Void, Error>) {
         activityIndicator.stopAnimating()
 
         switch result {
@@ -83,6 +83,7 @@ final class StoreListViewController: UIViewController {
               let productCatalog = productCatalog else { return }
 
         controller.storeName = store.name
+        controller.currency = store.currency
         controller.productCatalog = productCatalog
     }
 
@@ -94,14 +95,17 @@ final class StoreListViewController: UIViewController {
     private func fetchStores() {
         catalog.getStores { [weak self] result in
             guard let self = self else { return }
-            self.activityIndicator.stopAnimating()
-            self.refreshControl.endRefreshing()
 
-            switch result {
-            case .success(let stores):
-                self.update(stores: stores)
-            case .failure(let error):
-                self.showToast(message: error.localizedDescription)
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.refreshControl.endRefreshing()
+                
+                switch result {
+                case .success(let stores):
+                    self.update(stores: stores)
+                case .failure(let error):
+                    self.showToast(message: error.localizedDescription)
+                }
             }
         }
     }

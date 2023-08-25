@@ -37,9 +37,10 @@ enum LaserlineViewfinderEnabledColor: CaseIterable, CustomStringConvertible {
 
     var uiColor: UIColor {
         switch self {
-        case .default: return SettingsManager.current.defaultLaserlineViewfinderEnabledColor
+        case .default: return SettingsManager.current.laserlineViewfinder.defaultViewfinder.enabledColor
         case .red: return .red
         case .white: return .white
         }
     }
 }
+

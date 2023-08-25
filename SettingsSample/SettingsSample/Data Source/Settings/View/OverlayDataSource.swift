@@ -44,7 +44,7 @@ enum BrushColor: CaseIterable, CustomStringConvertible {
 extension Brush {
     static let red = Brush(fillColor: UIColor.red.withAlphaComponent(0.2), strokeColor: .red, strokeWidth: 1)
     static let green = Brush(fillColor: UIColor.green.withAlphaComponent(0.2), strokeColor: .green, strokeWidth: 1)
-    static let gray = Brush(fillColor: UIColor.gray.withAlphaComponent(0.2), strokeColor: .gray, strokeWidth: 1)
+    static let gray = Brush(fillColor: UIColor.green.withAlphaComponent(0.2), strokeColor: .gray, strokeWidth: 1)
 
     static let allBrushes: [Brush] = [
         .red, .green, .gray
@@ -58,55 +58,49 @@ class OverlayDataSource: DataSource {
         Brush.green
     ]
 
-    weak var delegate: DataSourceDelegate?
-
-    init(delegate: DataSourceDelegate) {
-        self.delegate = delegate
-    }
-
     // MARK: - Sections
 
     var sections: [Section] {
-        [basicOverlaySection, advancedOverlaySection]
+        [basicOverlaySection, advancedOverlaySection, customOverlaySection]
     }
 
     var basicOverlaySection: Section {
         let animationRow = Row(
             title: "Enabled",
             kind: .switch,
-            getValue: { SettingsManager.current.basicOverlayEnabled },
+            getValue: { SettingsManager.current.basicOverlay.isEnabled },
             didChangeValue: {
-                SettingsManager.current.basicOverlayEnabled = $0
+                SettingsManager.current.basicOverlay.isEnabled = $0
                 self.delegate?.didChangeData()
             })
 
         var rows = [animationRow]
 
-        if SettingsManager.current.basicOverlayEnabled {
+        if SettingsManager.current.basicOverlay.isEnabled {
             rows.append(Row.choice(
                 title: "Correct price brush",
                 options: BrushColor.allCases,
-                getValue: { SettingsManager.current.basicOverlayCorrectBrush  },
+                getValue: { SettingsManager.current.basicOverlay.correctBrush  },
                 didChangeValue: {
-                    SettingsManager.current.basicOverlayCorrectBrush = $0
+                    SettingsManager.current.basicOverlay.correctBrush = $0
                 },
                 dataSourceDelegate: self.delegate)
             )
             rows.append(Row.choice(
                 title: "Wrong price brush",
                 options: BrushColor.allCases,
-                getValue: { SettingsManager.current.basicOverlayWrongBrush  },
+                getValue: { SettingsManager.current.basicOverlay.wrongBrush  },
                 didChangeValue: {
-                    SettingsManager.current.basicOverlayWrongBrush = $0
+                    SettingsManager.current.basicOverlay.wrongBrush = $0
                 },
                 dataSourceDelegate: self.delegate)
             )
             rows.append(Row.choice(
                 title: "Unknown product price brush",
                 options: BrushColor.allCases,
-                getValue: { SettingsManager.current.basicOverlayUnknownBrush  },
+                getValue: { SettingsManager.current.basicOverlay.unknownBrush  },
                 didChangeValue: {
-                    SettingsManager.current.basicOverlayUnknownBrush = $0
+                    SettingsManager.current.basicOverlay.unknownBrush = $0
                 },
                 dataSourceDelegate: self.delegate)
             )
@@ -120,11 +114,30 @@ class OverlayDataSource: DataSource {
             Row(
                 title: "Enabled",
                 kind: .switch,
-                getValue: { SettingsManager.current.advancedOverlayEnabled },
+                getValue: { SettingsManager.current.advancedOverlay.isEnabled },
                 didChangeValue: {
-                    SettingsManager.current.advancedOverlayEnabled = $0
+                    SettingsManager.current.advancedOverlay.isEnabled = $0
                     self.delegate?.didChangeData()
                 })
         ])
+    }
+
+    var customOverlaySection: Section {
+        return Section(title: "Custom Overlay", rows: [
+            Row(
+                title: "Enabled",
+                kind: .switch,
+                getValue: { SettingsManager.current.customOverlay.customOverlayEnabled },
+                didChangeValue: {
+                    SettingsManager.current.customOverlay.customOverlayEnabled = $0
+                    self.delegate?.didChangeData()
+                })
+        ])
+    }
+
+    weak var delegate: DataSourceDelegate?
+
+    init(delegate: DataSourceDelegate) {
+        self.delegate = delegate
     }
 }

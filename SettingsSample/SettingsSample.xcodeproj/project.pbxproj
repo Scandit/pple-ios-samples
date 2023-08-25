@@ -14,14 +14,7 @@
 		C062981427FEA948009EE5F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C062981227FEA948009EE5F2 /* Main.storyboard */; };
 		C062981627FEA94A009EE5F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C062981527FEA94A009EE5F2 /* Assets.xcassets */; };
 		C062981927FEA94A009EE5F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C062981727FEA94A009EE5F2 /* LaunchScreen.storyboard */; };
-		C077D0F62A2120D100608F08 /* ScanditShelf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C077D0F22A2120D000608F08 /* ScanditShelf.xcframework */; };
-		C077D0F72A2120D100608F08 /* ScanditShelf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C077D0F22A2120D000608F08 /* ScanditShelf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C077D0F82A2120D100608F08 /* ScanditCaptureCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C077D0F32A2120D000608F08 /* ScanditCaptureCore.xcframework */; };
-		C077D0F92A2120D100608F08 /* ScanditCaptureCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C077D0F32A2120D000608F08 /* ScanditCaptureCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C077D0FA2A2120D200608F08 /* ScanditBarcodeCapture.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C077D0F42A2120D000608F08 /* ScanditBarcodeCapture.xcframework */; };
-		C077D0FB2A2120D200608F08 /* ScanditBarcodeCapture.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C077D0F42A2120D000608F08 /* ScanditBarcodeCapture.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C077D0FC2A2120D200608F08 /* ScanditLabelCapture.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C077D0F52A2120D100608F08 /* ScanditLabelCapture.xcframework */; };
-		C077D0FD2A2120D200608F08 /* ScanditLabelCapture.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C077D0F52A2120D100608F08 /* ScanditLabelCapture.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C0800A962A557D0E00093419 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0800A952A557D0E00093419 /* CustomOverlayView.swift */; };
 		C081A39B29B23108006999A1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C081A39A29B23108006999A1 /* SettingsViewController.swift */; };
 		C0904EE729B5026E007D5A82 /* ViewSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C010C21929B4FAC500DF459D /* ViewSettings.storyboard */; };
 		C0904EEB29B50561007D5A82 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1B929B4F7DB00DF459D /* MainTableViewController.swift */; };
@@ -51,7 +44,6 @@
 		C0904F2B29B505E0007D5A82 /* AimerViewfinderFrameColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1EA29B4FA4400DF459D /* AimerViewfinderFrameColor.swift */; };
 		C0904F2C29B505E0007D5A82 /* AimerViewfinderDotColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1EB29B4FA4400DF459D /* AimerViewfinderDotColor.swift */; };
 		C0904F2F29B505E0007D5A82 /* LaserlineViewfinderEnabledColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1E929B4FA4400DF459D /* LaserlineViewfinderEnabledColor.swift */; };
-		C0904F4A29B612C6007D5A82 /* SettingsManager+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1D429B4FA3900DF459D /* SettingsManager+View.swift */; };
 		C0904F5029B674C8007D5A82 /* PriceCheckFeedbackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0904F4F29B674C8007D5A82 /* PriceCheckFeedbackTableViewController.swift */; };
 		C0904F5229B675C6007D5A82 /* PriceCheckFeedbackDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0904F5129B675C6007D5A82 /* PriceCheckFeedbackDataSource.swift */; };
 		C0904F5329B86C36007D5A82 /* PriceCheckFeedbackSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0904F4E29B67331007D5A82 /* PriceCheckFeedbackSettings.storyboard */; };
@@ -67,22 +59,31 @@
 		C0904F5D29BA8277007D5A82 /* MeasureUnit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C20B29B4FA5400DF459D /* MeasureUnit+Extensions.swift */; };
 		C0CA8F6329BA90CD00DD2F26 /* Size+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA8F6229BA90CD00DD2F26 /* Size+Extensions.swift */; };
 		D33BB1B1296DD54F0046619E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BB1B0296DD54F0046619E /* Assets.swift */; };
+		D366425F2A976EAF00AC82EF /* SettingsManagerFeedbackSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366425E2A976EAF00AC82EF /* SettingsManagerFeedbackSection.swift */; };
+		D36642612A976F8800AC82EF /* SettingsManagerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36642602A976F8800AC82EF /* SettingsManagerSection.swift */; };
+		D36642632A97701A00AC82EF /* SettingsManagerViewfinderConfigurationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36642622A97701A00AC82EF /* SettingsManagerViewfinderConfigurationSection.swift */; };
+		D36642652A9770C700AC82EF /* SettingsManagerLaserlineViewfinderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36642642A9770C700AC82EF /* SettingsManagerLaserlineViewfinderSection.swift */; };
+		D36642672A97738700AC82EF /* SettingsManagerAimerViewfinderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36642662A97738700AC82EF /* SettingsManagerAimerViewfinderSection.swift */; };
+		D36642692A97739A00AC82EF /* SettingsManagerRectangularViewfinderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36642682A97739A00AC82EF /* SettingsManagerRectangularViewfinderSection.swift */; };
+		D366426B2A97742F00AC82EF /* SettingsManagerBasicOverlaySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366426A2A97742F00AC82EF /* SettingsManagerBasicOverlaySection.swift */; };
+		D366426D2A97749C00AC82EF /* SettingsManagerAdvancedOverlaySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366426C2A97749C00AC82EF /* SettingsManagerAdvancedOverlaySection.swift */; };
+		D366426F2A9774E500AC82EF /* SettingsManagerCustomOverlaySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366426E2A9774E500AC82EF /* SettingsManagerCustomOverlaySection.swift */; };
 		D3A63D6B28E432810030EE3A /* UIViewController+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A63D6A28E432810030EE3A /* UIViewController+Toast.swift */; };
+		D3B01F692A3A153F00BA3405 /* ScanditShelf in Frameworks */ = {isa = PBXBuildFile; productRef = D3B01F682A3A153F00BA3405 /* ScanditShelf */; };
+		D3D1C1052A8F9216004165CF /* PriceCheckFlowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D1C1042A8F9216004165CF /* PriceCheckFlowTableViewController.swift */; };
+		D3D1C1072A8F924A004165CF /* PriceCheckFlowDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D1C1062A8F924A004165CF /* PriceCheckFlowDataSource.swift */; };
+		D3D1C1092A8F9BB1004165CF /* PriceCheckFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3D1C1082A8F9BB1004165CF /* PriceCheckFlow.storyboard */; };
 		D3D3694F286DCEFC006FD7A0 /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D3694E286DCEFC006FD7A0 /* Segues.swift */; };
 		D3EE3D652822D4E1007A25FC /* StoreListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EE3D642822D4E1007A25FC /* StoreListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C077D0FE2A2120D300608F08 /* Embed Frameworks */ = {
+		C062982427FEC751009EE5F2 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C077D0FD2A2120D200608F08 /* ScanditLabelCapture.xcframework in Embed Frameworks */,
-				C077D0FB2A2120D200608F08 /* ScanditBarcodeCapture.xcframework in Embed Frameworks */,
-				C077D0F92A2120D100608F08 /* ScanditCaptureCore.xcframework in Embed Frameworks */,
-				C077D0F72A2120D100608F08 /* ScanditShelf.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,7 +99,6 @@
 		C010C1CE29B4F7DB00DF459D /* ChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
 		C010C1CF29B4F7DB00DF459D /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		C010C1D029B4F7DB00DF459D /* FloatWithUnitChooserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatWithUnitChooserViewController.swift; sourceTree = "<group>"; };
-		C010C1D429B4FA3900DF459D /* SettingsManager+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsManager+View.swift"; sourceTree = "<group>"; };
 		C010C1D629B4FA3900DF459D /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		C010C1D929B4FA4400DF459D /* RectangularSizeSpecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangularSizeSpecification.swift; sourceTree = "<group>"; };
 		C010C1E429B4FA4400DF459D /* ScanAreaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanAreaDataSource.swift; sourceTree = "<group>"; };
@@ -138,10 +138,7 @@
 		C062981527FEA94A009EE5F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C062981827FEA94A009EE5F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C062981A27FEA94A009EE5F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C077D0F22A2120D000608F08 /* ScanditShelf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ScanditShelf.xcframework; path = ../ScanditSDK/ScanditShelf.xcframework; sourceTree = "<group>"; };
-		C077D0F32A2120D000608F08 /* ScanditCaptureCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ScanditCaptureCore.xcframework; path = ../ScanditSDK/ScanditCaptureCore.xcframework; sourceTree = "<group>"; };
-		C077D0F42A2120D000608F08 /* ScanditBarcodeCapture.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ScanditBarcodeCapture.xcframework; path = ../ScanditSDK/ScanditBarcodeCapture.xcframework; sourceTree = "<group>"; };
-		C077D0F52A2120D100608F08 /* ScanditLabelCapture.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ScanditLabelCapture.xcframework; path = ../ScanditSDK/ScanditLabelCapture.xcframework; sourceTree = "<group>"; };
+		C0800A952A557D0E00093419 /* CustomOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOverlayView.swift; sourceTree = "<group>"; };
 		C081A39A29B23108006999A1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C0904F1329B505C6007D5A82 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C0904F4E29B67331007D5A82 /* PriceCheckFeedbackSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PriceCheckFeedbackSettings.storyboard; sourceTree = "<group>"; };
@@ -149,7 +146,20 @@
 		C0904F5129B675C6007D5A82 /* PriceCheckFeedbackDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCheckFeedbackDataSource.swift; sourceTree = "<group>"; };
 		C0CA8F6229BA90CD00DD2F26 /* Size+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Size+Extensions.swift"; sourceTree = "<group>"; };
 		D33BB1B0296DD54F0046619E /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		D366425E2A976EAF00AC82EF /* SettingsManagerFeedbackSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerFeedbackSection.swift; sourceTree = "<group>"; };
+		D36642602A976F8800AC82EF /* SettingsManagerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerSection.swift; sourceTree = "<group>"; };
+		D36642622A97701A00AC82EF /* SettingsManagerViewfinderConfigurationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerViewfinderConfigurationSection.swift; sourceTree = "<group>"; };
+		D36642642A9770C700AC82EF /* SettingsManagerLaserlineViewfinderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerLaserlineViewfinderSection.swift; sourceTree = "<group>"; };
+		D36642662A97738700AC82EF /* SettingsManagerAimerViewfinderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerAimerViewfinderSection.swift; sourceTree = "<group>"; };
+		D36642682A97739A00AC82EF /* SettingsManagerRectangularViewfinderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerRectangularViewfinderSection.swift; sourceTree = "<group>"; };
+		D366426A2A97742F00AC82EF /* SettingsManagerBasicOverlaySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerBasicOverlaySection.swift; sourceTree = "<group>"; };
+		D366426C2A97749C00AC82EF /* SettingsManagerAdvancedOverlaySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerAdvancedOverlaySection.swift; sourceTree = "<group>"; };
+		D366426E2A9774E500AC82EF /* SettingsManagerCustomOverlaySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerCustomOverlaySection.swift; sourceTree = "<group>"; };
 		D3A63D6A28E432810030EE3A /* UIViewController+Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Toast.swift"; sourceTree = "<group>"; };
+		D3B01F662A3A153400BA3405 /* ScanditShelf */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ScanditShelf; path = ../ScanditShelf; sourceTree = "<group>"; };
+		D3D1C1042A8F9216004165CF /* PriceCheckFlowTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCheckFlowTableViewController.swift; sourceTree = "<group>"; };
+		D3D1C1062A8F924A004165CF /* PriceCheckFlowDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCheckFlowDataSource.swift; sourceTree = "<group>"; };
+		D3D1C1082A8F9BB1004165CF /* PriceCheckFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PriceCheckFlow.storyboard; sourceTree = "<group>"; };
 		D3D3694E286DCEFC006FD7A0 /* Segues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
 		D3EE3D642822D4E1007A25FC /* StoreListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,10 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C077D0FC2A2120D200608F08 /* ScanditLabelCapture.xcframework in Frameworks */,
-				C077D0FA2A2120D200608F08 /* ScanditBarcodeCapture.xcframework in Frameworks */,
-				C077D0F82A2120D100608F08 /* ScanditCaptureCore.xcframework in Frameworks */,
-				C077D0F62A2120D100608F08 /* ScanditShelf.xcframework in Frameworks */,
+				D3B01F692A3A153F00BA3405 /* ScanditShelf in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +201,7 @@
 				C010C1BF29B4F7DB00DF459D /* ScanAreaTableViewController.swift */,
 				C010C1C029B4F7DB00DF459D /* ViewfinderTableViewController.swift */,
 				C010C1C129B4F7DB00DF459D /* OverlayTableViewController.swift */,
+				D3D1C1042A8F9216004165CF /* PriceCheckFlowTableViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,7 +220,7 @@
 		C010C1D229B4FA3900DF459D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C010C1D429B4FA3900DF459D /* SettingsManager+View.swift */,
+				D366425D2A976EA100AC82EF /* Sections */,
 				C010C1D629B4FA3900DF459D /* SettingsManager.swift */,
 			);
 			path = Model;
@@ -221,8 +229,8 @@
 		C010C1D729B4FA4400DF459D /* Data Source */ = {
 			isa = PBXGroup;
 			children = (
-				C010C1D829B4FA4400DF459D /* Settings */,
 				C010C1F329B4FA4400DF459D /* Other */,
+				C010C1D829B4FA4400DF459D /* Settings */,
 			);
 			path = "Data Source";
 			sourceTree = "<group>";
@@ -230,9 +238,10 @@
 		C010C1D829B4FA4400DF459D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				C0904F5129B675C6007D5A82 /* PriceCheckFeedbackDataSource.swift */,
+				D3D1C1062A8F924A004165CF /* PriceCheckFlowDataSource.swift */,
 				C010C1D929B4FA4400DF459D /* RectangularSizeSpecification.swift */,
 				C010C1E329B4FA4400DF459D /* View */,
-				C0904F5129B675C6007D5A82 /* PriceCheckFeedbackDataSource.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -240,8 +249,8 @@
 		C010C1E329B4FA4400DF459D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C010C1E429B4FA4400DF459D /* ScanAreaDataSource.swift */,
 				C010C1E629B4FA4400DF459D /* OverlayDataSource.swift */,
+				C010C1E429B4FA4400DF459D /* ScanAreaDataSource.swift */,
 				C010C1E729B4FA4400DF459D /* Viewfinder */,
 			);
 			path = View;
@@ -278,9 +287,10 @@
 			children = (
 				C010C1FB29B4FA4C00DF459D /* BasicCell.swift */,
 				C010C1FC29B4FA4C00DF459D /* FloatInputCell.swift */,
+				C0800A952A557D0E00093419 /* CustomOverlayView.swift */,
+				C010C20129B4FA4C00DF459D /* SwitchCell.swift */,
 				C010C1FD29B4FA4C00DF459D /* UITableView+Utils.swift */,
 				C010C1FE29B4FA4C00DF459D /* SliderCell */,
-				C010C20129B4FA4C00DF459D /* SwitchCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -297,14 +307,14 @@
 		C010C20229B4FA5400DF459D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C010C20529B4FA5400DF459D /* UIColor+Extensions.swift */,
-				C0CA8F6229BA90CD00DD2F26 /* Size+Extensions.swift */,
-				C010C20629B4FA5400DF459D /* NumberFormatter+Extensions.swift */,
-				C010C20729B4FA5400DF459D /* ViewfinderStyles.swift */,
-				C010C20A29B4FA5400DF459D /* OptionalAny+Extensions.swift */,
-				C010C20B29B4FA5400DF459D /* MeasureUnit+Extensions.swift */,
-				C010C21029B4FA5400DF459D /* UITableViewCell+Extensions.swift */,
 				C010C21529B4FA5400DF459D /* Float+Extensions.swift */,
+				C010C20B29B4FA5400DF459D /* MeasureUnit+Extensions.swift */,
+				C010C20629B4FA5400DF459D /* NumberFormatter+Extensions.swift */,
+				C010C20A29B4FA5400DF459D /* OptionalAny+Extensions.swift */,
+				C0CA8F6229BA90CD00DD2F26 /* Size+Extensions.swift */,
+				C010C20529B4FA5400DF459D /* UIColor+Extensions.swift */,
+				C010C21029B4FA5400DF459D /* UITableViewCell+Extensions.swift */,
+				C010C20729B4FA5400DF459D /* ViewfinderStyles.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -312,9 +322,10 @@
 		C062980027FEA948009EE5F2 = {
 			isa = PBXGroup;
 			children = (
+				D3B01F652A3A153400BA3405 /* Packages */,
 				C062980B27FEA948009EE5F2 /* SettingsSample */,
 				C062980A27FEA948009EE5F2 /* Products */,
-				C062982027FEC750009EE5F2 /* Frameworks */,
+				D3B01F672A3A153F00BA3405 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -349,19 +360,9 @@
 				C062981227FEA948009EE5F2 /* Main.storyboard */,
 				C0904F4E29B67331007D5A82 /* PriceCheckFeedbackSettings.storyboard */,
 				C010C21929B4FAC500DF459D /* ViewSettings.storyboard */,
+				D3D1C1082A8F9BB1004165CF /* PriceCheckFlow.storyboard */,
 			);
 			path = SettingsSample;
-			sourceTree = "<group>";
-		};
-		C062982027FEC750009EE5F2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C077D0F42A2120D000608F08 /* ScanditBarcodeCapture.xcframework */,
-				C077D0F32A2120D000608F08 /* ScanditCaptureCore.xcframework */,
-				C077D0F52A2120D100608F08 /* ScanditLabelCapture.xcframework */,
-				C077D0F22A2120D000608F08 /* ScanditShelf.xcframework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D33BB1AF296DD5470046619E /* Utilities */ = {
@@ -371,6 +372,37 @@
 				D33BB1B0296DD54F0046619E /* Assets.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D366425D2A976EA100AC82EF /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				D366425E2A976EAF00AC82EF /* SettingsManagerFeedbackSection.swift */,
+				D36642602A976F8800AC82EF /* SettingsManagerSection.swift */,
+				D36642622A97701A00AC82EF /* SettingsManagerViewfinderConfigurationSection.swift */,
+				D36642642A9770C700AC82EF /* SettingsManagerLaserlineViewfinderSection.swift */,
+				D36642662A97738700AC82EF /* SettingsManagerAimerViewfinderSection.swift */,
+				D36642682A97739A00AC82EF /* SettingsManagerRectangularViewfinderSection.swift */,
+				D366426A2A97742F00AC82EF /* SettingsManagerBasicOverlaySection.swift */,
+				D366426C2A97749C00AC82EF /* SettingsManagerAdvancedOverlaySection.swift */,
+				D366426E2A9774E500AC82EF /* SettingsManagerCustomOverlaySection.swift */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		D3B01F652A3A153400BA3405 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				D3B01F662A3A153400BA3405 /* ScanditShelf */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		D3B01F672A3A153F00BA3405 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,7 +415,7 @@
 				C062980527FEA948009EE5F2 /* Sources */,
 				C062980627FEA948009EE5F2 /* Frameworks */,
 				C062980727FEA948009EE5F2 /* Resources */,
-				C077D0FE2A2120D300608F08 /* Embed Frameworks */,
+				C062982427FEC751009EE5F2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -391,6 +423,7 @@
 			);
 			name = SettingsSample;
 			packageProductDependencies = (
+				D3B01F682A3A153F00BA3405 /* ScanditShelf */,
 			);
 			productName = ShelfPPLESample;
 			productReference = C062980927FEA948009EE5F2 /* SettingsSample.app */;
@@ -440,6 +473,7 @@
 				C0904EE729B5026E007D5A82 /* ViewSettings.storyboard in Resources */,
 				C062981627FEA94A009EE5F2 /* Assets.xcassets in Resources */,
 				C062981427FEA948009EE5F2 /* Main.storyboard in Resources */,
+				D3D1C1092A8F9BB1004165CF /* PriceCheckFlow.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +487,7 @@
 				C0904F5C29BA594E007D5A82 /* Float+Extensions.swift in Sources */,
 				C0904F5A29BA58F2007D5A82 /* OptionalAny+Extensions.swift in Sources */,
 				C0904F1029B505A2007D5A82 /* SliderCell.swift in Sources */,
+				D366426F2A9774E500AC82EF /* SettingsManagerCustomOverlaySection.swift in Sources */,
 				C0904F2929B505E0007D5A82 /* ViewfinderDataSource.swift in Sources */,
 				C0904F2F29B505E0007D5A82 /* LaserlineViewfinderEnabledColor.swift in Sources */,
 				C0904F5D29BA8277007D5A82 /* MeasureUnit+Extensions.swift in Sources */,
@@ -465,11 +500,12 @@
 				C0904F2B29B505E0007D5A82 /* AimerViewfinderFrameColor.swift in Sources */,
 				C0904F2829B505E0007D5A82 /* RectangularViewfinderDisabledColor.swift in Sources */,
 				C0904F5929BA58E3007D5A82 /* NumberFormatter+Extensions.swift in Sources */,
+				D366426D2A97749C00AC82EF /* SettingsManagerAdvancedOverlaySection.swift in Sources */,
 				D33BB1B1296DD54F0046619E /* Assets.swift in Sources */,
 				D3A63D6B28E432810030EE3A /* UIViewController+Toast.swift in Sources */,
 				C0904EFC29B50582007D5A82 /* SettingsTableViewController.swift in Sources */,
+				D36642612A976F8800AC82EF /* SettingsManagerSection.swift in Sources */,
 				C0904F1229B505A2007D5A82 /* DataSourceDelegate.swift in Sources */,
-				C0904F4A29B612C6007D5A82 /* SettingsManager+View.swift in Sources */,
 				C0904F0629B505A2007D5A82 /* Row.swift in Sources */,
 				C0904F1129B505A2007D5A82 /* DataSource.swift in Sources */,
 				C0904F0229B5058C007D5A82 /* SettingsManager.swift in Sources */,
@@ -489,15 +525,24 @@
 				C0904F2C29B505E0007D5A82 /* AimerViewfinderDotColor.swift in Sources */,
 				C0904F5B29BA5933007D5A82 /* ViewfinderStyles.swift in Sources */,
 				C0904F2529B505E0007D5A82 /* LaserlineViewfinderDisabledColor.swift in Sources */,
+				D366426B2A97742F00AC82EF /* SettingsManagerBasicOverlaySection.swift in Sources */,
 				C0904F0829B505A2007D5A82 /* FloatInputCell.swift in Sources */,
+				D36642672A97738700AC82EF /* SettingsManagerAimerViewfinderSection.swift in Sources */,
 				C0904F5629B9E37B007D5A82 /* ScanAreaDataSource.swift in Sources */,
+				D36642632A97701A00AC82EF /* SettingsManagerViewfinderConfigurationSection.swift in Sources */,
 				C0904F0E29B505A2007D5A82 /* Section.swift in Sources */,
 				C0CA8F6329BA90CD00DD2F26 /* Size+Extensions.swift in Sources */,
 				C081A39B29B23108006999A1 /* SettingsViewController.swift in Sources */,
 				C0904EEB29B50561007D5A82 /* MainTableViewController.swift in Sources */,
+				D36642692A97739A00AC82EF /* SettingsManagerRectangularViewfinderSection.swift in Sources */,
+				D3D1C1052A8F9216004165CF /* PriceCheckFlowTableViewController.swift in Sources */,
 				C01BC0C1280E820D005BC2EA /* CaptureViewController.swift in Sources */,
 				C0904F1429B505C6007D5A82 /* Constants.swift in Sources */,
 				C0904EFD29B50582007D5A82 /* ChoiceViewController.swift in Sources */,
+				D3D1C1072A8F924A004165CF /* PriceCheckFlowDataSource.swift in Sources */,
+				C0800A962A557D0E00093419 /* CustomOverlayView.swift in Sources */,
+				D36642652A9770C700AC82EF /* SettingsManagerLaserlineViewfinderSection.swift in Sources */,
+				D366425F2A976EAF00AC82EF /* SettingsManagerFeedbackSection.swift in Sources */,
 				C0904F0929B505A2007D5A82 /* UITableView+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -645,8 +690,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 79D4J6BB7A;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 79D4J6BB7A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SettingsSample/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "[Camera usage description]";
@@ -663,6 +712,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.scandit.shelf.SettingsSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse *";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse *";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -674,8 +725,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 79D4J6BB7A;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 79D4J6BB7A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SettingsSample/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "[Camera usage description]";
@@ -692,6 +747,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.scandit.shelf.SettingsSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse *";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse *";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -720,6 +777,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D3B01F682A3A153F00BA3405 /* ScanditShelf */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ScanditShelf;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C062980127FEA948009EE5F2 /* Project object */;
 }

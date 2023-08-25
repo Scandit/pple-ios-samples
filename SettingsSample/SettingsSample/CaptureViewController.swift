@@ -18,21 +18,26 @@ import ScanditShelf
 final class CaptureViewController: UIViewController {
 
     var storeName: String?
+    var currency: Currency?
 
     var productCatalog: ProductCatalog?
 
     @IBOutlet private weak var titleLabel: UILabel!
-
+    @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
+
+    @IBOutlet weak var customOverlayView: CustomOverlayView!
 
     private var captureView: CaptureView?
-
     private var priceCheck: PriceCheck?
+    private var isScanningEnabled = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         titleLabel.text = storeName
+        customOverlayView.currency = currency
 
         setupCaptureViewAndPriceCheck()
     }
@@ -41,6 +46,12 @@ final class CaptureViewController: UIViewController {
         super.viewDidDisappear(animated)
 
         priceCheck?.dispose()
+    }
+
+    @IBAction func onViewTapAction(_ sender: Any) {
+        guard !isScanningEnabled else { return }
+
+        enableScanning()
     }
 
     private func setupCaptureViewAndPriceCheck() {
@@ -61,12 +72,13 @@ final class CaptureViewController: UIViewController {
         let priceCheck = PriceCheck(productCatalog: productCatalog, captureView: captureView)
         priceCheck.addListener(self)
         priceCheck.setFeedback(feedback)
-        priceCheck.enable()
 
         SettingsManager.current.priceCheck = priceCheck
 
         self.priceCheck = priceCheck
         self.captureView = captureView
+
+        enableScanning()
 
         let viewfinderConfiguration = ViewfinderConfiguration(
             viewfinder: RectangularViewfinder(
@@ -75,6 +87,22 @@ final class CaptureViewController: UIViewController {
             )
         )
         priceCheck.setViewfinderConfiguration(viewfinderConfiguration)
+    }
+
+    private func enableScanning() {
+        isScanningEnabled = true
+        priceCheck?.enable()
+        messageLabel.isHidden = true
+        tapGestureRecognizer.isEnabled = false
+    }
+
+    private func pauseScanning() {
+        guard !SettingsManager.current.continuousPriceCheckEnabled else { return }
+
+        isScanningEnabled = false
+        priceCheck?.disable()
+        messageLabel.isHidden = false
+        tapGestureRecognizer.isEnabled = true
     }
 }
 
@@ -92,20 +120,44 @@ extension CaptureViewController: AuthenticationEventListener {
 extension CaptureViewController: PriceCheckListener {
 
     func onCorrectPrice(result: PriceCheckResult) {
-        showNotification(text: "\(result.name ?? "N/A")\nCorrect price: \(result.capturedPrice)")
+        guard let currency else { return }
+
+        let capturedPrice = result.capturedPrice.formattedPrice(currency: currency)
+        showNotification(text: "\(result.name ?? "N/A")\nCorrect price: \(capturedPrice)")
     }
 
     func onWrongPrice(result: PriceCheckResult) {
+        guard let currency else { return }
+
+        let capturedPrice = result.capturedPrice.formattedPrice(currency: currency)
+        let correctPrice = result.correctPrice?.formattedPrice(currency: currency) ?? "N/A"
         showNotification(
-            text: "\(result.name ?? "N/A")\nWrong price: \(result.capturedPrice), should be \(result.correctPrice ?? -1)"
+            text: "\(result.name ?? "N/A")\nWrong price: \(capturedPrice), should be \(correctPrice)"
         )
     }
 
     func onUnknownProduct(result: PriceCheckResult) {
-        showNotification(text: "Unrecognized product - captured price: \(result.capturedPrice)")
+        guard let currency else { return }
+
+        let capturedPrice = result.capturedPrice.formattedPrice(currency: currency)
+        showNotification(text: "Unrecognized product - captured price: \(capturedPrice)")
+    }
+
+    func onSessionUpdate(_ session: PriceLabelSession, frameData: FrameData) {
+        guard let captureView else { return }
+        customOverlayView.updateOverlay(session: session, captureView: captureView)
+
+        guard !session.trackedLabels.isEmpty else { return }
+        pauseScanning()
     }
 
     private func showNotification(text: String) {
         showToast(message: text, attachToBottom: false)
+    }
+}
+
+extension Double {
+    func formattedPrice(currency: Currency) -> String {
+        String(format: "\(currency.symbol)%.\(currency.decimalPlaces)f", self)
     }
 }
