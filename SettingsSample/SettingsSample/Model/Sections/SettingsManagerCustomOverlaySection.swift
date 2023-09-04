@@ -5,5 +5,5 @@
 import Foundation
 
 struct SettingsManagerCustomOverlaySection: SettingsManagerSection {
-    var customOverlayEnabled: Bool = true
+    var customOverlayEnabled: Bool = false
 }

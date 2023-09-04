@@ -17,19 +17,16 @@ extension SettingsManagerSection {
     }
 }
 
-protocol SettingsManagerViewfinderSection: SettingsManagerSection {}
+protocol SettingsManagerViewfinderSection: SettingsManagerSection {
+    var viewfinder: Viewfinder? { get }
+}
 
 extension SettingsManagerViewfinderSection {
     var viewfinderConfiguration: SettingsManagerViewfinderConfigurationSection {
         SettingsManager.current.viewfinderConfiguration
     }
 
-    var viewfinder: Viewfinder? {
-        get { viewfinderConfiguration.viewfinder }
-        set { viewfinderConfiguration.viewfinder = newValue }
-    }
-
-    func updateViewfinder(_ viewfinder: Viewfinder? = nil) {
+    func updateViewfinder() {
         viewfinderConfiguration.updateViewfinder(viewfinder)
     }
 }

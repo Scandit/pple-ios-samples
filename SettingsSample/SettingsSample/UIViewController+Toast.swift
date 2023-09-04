@@ -14,18 +14,42 @@
 
 import UIKit
 
+enum ToastColor {
+    case green
+    case red
+    case gray
+    case black
+
+    var color: UIColor {
+        switch self {
+        case .green:
+            return UIColor(named: "green") ?? .green
+        case .red:
+            return UIColor(named: "red") ?? .red
+        case .gray:
+            return UIColor(named: "gray") ?? .gray
+        case .black:
+            return .black
+        }
+    }
+}
+
 extension UIViewController {
 
-    func showToast(message: String, attachToBottom: Bool = true) {
+    func showToast(message: String, color: ToastColor = .black) {
         DispatchQueue.main.async {
-            let toast = self.makeToast(attachToBottom: attachToBottom)
+            let toast = self.makeToast(backgroundColor: color.color)
 
             toast.show(message: message)
         }
     }
 
-    private func makeToast(attachToBottom: Bool) -> ToastView {
-        let toast = ToastView()
+    private func makeToast(backgroundColor: UIColor) -> ToastView {
+        let toast = ToastView(color: backgroundColor)
+
+        view.subviews.compactMap { $0 as? ToastView }.forEach {
+            $0.remove()
+        }
 
         toast.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(toast)
@@ -33,9 +57,7 @@ extension UIViewController {
         NSLayoutConstraint.activate([
             view.leadingAnchor.constraint(equalTo: toast.leadingAnchor, constant: -20),
             view.trailingAnchor.constraint(equalTo: toast.trailingAnchor, constant: 20),
-            attachToBottom
-            ? view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: toast.bottomAnchor, constant: 20)
-            : view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: toast.topAnchor, constant: -80)
+            view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: toast.topAnchor, constant: -80)
         ])
 
         return toast
@@ -45,19 +67,20 @@ extension UIViewController {
 final private class ToastView: UIView {
 
     let label = UILabel()
+    private var animator: UIViewPropertyAnimator?
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(color: UIColor) {
+        super.init(frame: .zero)
 
-        setUp()
+        setUp(backgroundColor: color)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setUp() {
-        backgroundColor = .black
+    private func setUp(backgroundColor: UIColor) {
+        self.backgroundColor = backgroundColor
         layer.cornerRadius = 10
         clipsToBounds = true
 
@@ -87,12 +110,17 @@ final private class ToastView: UIView {
             self.alpha = 1
         }
 
-        let animator = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: duration, delay: 3) {
+        animator = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: duration, delay: 3) {
             self.alpha = 0
         }
 
-        animator.addCompletion { _ in
+        animator?.addCompletion { _ in
             self.removeFromSuperview()
         }
+    }
+
+    func remove() {
+        animator?.stopAnimation(false)
+        removeFromSuperview()
     }
 }

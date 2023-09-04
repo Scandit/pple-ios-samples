@@ -6,11 +6,11 @@ import Foundation
 import ScanditShelf
 
 struct SettingsManagerAimerViewfinderSection: SettingsManagerViewfinderSection {
+    var viewfinder: Viewfinder? { aimerViewfinder }
+
     let defaultViewfinder = AimerViewfinder()
 
-    var aimerViewfinder: AimerViewfinder {
-        viewfinder as! AimerViewfinder
-    }
+    var aimerViewfinder = AimerViewfinder()
 
     /// Note: AimerViewfinderFrameColor is not part of the SDK, see LaserlineViewfinderDisabledColor.swift
     var frameColor: AimerViewfinderFrameColor {
@@ -19,9 +19,8 @@ struct SettingsManagerAimerViewfinderSection: SettingsManagerViewfinderSection {
             return AimerViewfinderFrameColor(color: color)
         }
         set {
-            var aimerViewfinder = aimerViewfinder
             aimerViewfinder.frameColor = newValue.uiColor
-            updateViewfinder(aimerViewfinder)
+            updateViewfinder()
         }
     }
 
@@ -32,9 +31,8 @@ struct SettingsManagerAimerViewfinderSection: SettingsManagerViewfinderSection {
             return AimerViewfinderDotColor(color: color)
         }
         set {
-            var aimerViewfinder = aimerViewfinder
             aimerViewfinder.dotColor = newValue.uiColor
-            updateViewfinder(aimerViewfinder)
+            updateViewfinder()
         }
     }
 }

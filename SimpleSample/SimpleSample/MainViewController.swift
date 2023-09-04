@@ -31,6 +31,8 @@ final class MainViewController: UIViewController {
 
     private var currency: Currency?
 
+    private let delegate = DefaultPriceCheckAdvancedOverlayDelegate()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -143,25 +145,23 @@ final class MainViewController: UIViewController {
         // Create an augmented overlay visual that will be shown over price labels.
         // By default, price labels are sought on the whole capture view. If you want to limit the scan area,
         // pass a non-nil LocationSelection to PriceCheckOverlay's constructor.
-        let overlay = BasicPriceCheckOverlay(
-            correctPriceBrush: Brush(
-                fillColor: .green.withAlphaComponent(0.33),
-                strokeColor: .clear,
-                strokeWidth: 0),
-            wrongPriceBrush: Brush(
-                fillColor: .red.withAlphaComponent(0.33),
-                strokeColor: .clear,
-                strokeWidth: 0),
-            unknownProductBrush: Brush(
-                fillColor: .gray.withAlphaComponent(0.33),
-                strokeColor: .clear,
-                strokeWidth: 0)
-        )
+        let overlay = AdvancedPriceCheckOverlay(delegate: delegate)
         priceCheck.addOverlay(overlay)
 
+        let viewfinder = RectangularViewfinder(style: .rounded, lineStyle: .light)
+        viewfinder.setSize(.init(
+            width: .init(value: 0.9, unit: .fraction),
+            height: .init(value: 0.3, unit: .fraction)
+        ))
+        viewfinder.dimming = 0.6
         let viewfinderConfiguration = ViewfinderConfiguration(
-            viewfinder: RectangularViewfinder()
+            viewfinder: viewfinder,
+            locationSelection: RectangularLocationSelection(size: .init(
+                width: .init(value: 0.9, unit: .fraction),
+                height: .init(value: 0.3, unit: .fraction)
+            ))
         )
+
         priceCheck.setViewfinderConfiguration(viewfinderConfiguration)
 
         priceCheck.enable()
@@ -177,27 +177,26 @@ final class MainViewController: UIViewController {
 extension MainViewController: PriceCheckListener {
     func onCorrectPrice(result: PriceCheckResult) {
         // Handle result that a Product label was scanned with correct price
-        showToast(result: result)
+        showToast(result: result, color: .green)
     }
 
     func onWrongPrice(result: PriceCheckResult) {
         // Handle result that a Product label was scanned with wrong price
-        showToast(result: result)
+        showToast(result: result, color: .red)
     }
 
     func onUnknownProduct(result: PriceCheckResult) {
         // Handle result that a Product label was scanned for an unknown Product
-        showToast(result: result)
+        showToast(result: result, color: .gray)
     }
 
-    private func showToast(result: PriceCheckResult) {
+    private func showToast(result: PriceCheckResult, color: ToastColor) {
         guard let currency else { return }
 
-        showToast(message: result.message(currency: currency))
+        showToast(message: result.message(currency: currency), color: color)
     }
 
-    func onSessionUpdate(_ session: ScanditShelf.PriceLabelSession, frameData: FrameData) {
-    }
+    func onSessionUpdate(_ session: ScanditShelf.PriceLabelSession, frameData: FrameData) {}
 }
 
 private extension PriceCheckResult {

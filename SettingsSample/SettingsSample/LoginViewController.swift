@@ -31,9 +31,7 @@ final class LoginViewController: UIViewController {
 
     private let authentication = Authentication.shared
 
-    private var sdkVersion: String {
-        Bundle(for: PriceCheck.self).infoDictionary?["CFBundleShortVersionString"] as? String ?? "Missing SDK version"
-    }
+    private var sdkVersion: String { ShelfVersion.version }
 
     @IBAction func unwindToLogin(_ segue: UIStoryboardSegue) {
         enableForm()

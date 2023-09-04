@@ -5,20 +5,21 @@
 import Foundation
 import ScanditShelf
 
-struct SettingsManagerLaserlineViewfinderSection: SettingsManagerViewfinderSection {
+final class SettingsManagerLaserlineViewfinderSection: SettingsManagerViewfinderSection {
+
+    var viewfinder: Viewfinder? { laserlineViewfinder }
 
     let defaultViewfinder = LaserlineViewfinder()
 
-    var laserlineViewfinder: LaserlineViewfinder {
-        viewfinder as! LaserlineViewfinder
-    }
+    var laserlineViewfinder = LaserlineViewfinder()
 
     var style: LaserlineViewfinderStyle {
         get {
             laserlineViewfinder.style
         }
         set {
-            updateViewfinder(LaserlineViewfinder(style: newValue))
+            laserlineViewfinder = LaserlineViewfinder(style: newValue)
+            updateViewfinder()
         }
     }
 
@@ -27,9 +28,8 @@ struct SettingsManagerLaserlineViewfinderSection: SettingsManagerViewfinderSecti
             laserlineViewfinder.width
         }
         set {
-            var viewfinder = laserlineViewfinder
-            viewfinder.width = newValue
-            updateViewfinder(viewfinder)
+            laserlineViewfinder.width = newValue
+            updateViewfinder()
         }
     }
 
@@ -40,9 +40,8 @@ struct SettingsManagerLaserlineViewfinderSection: SettingsManagerViewfinderSecti
             return LaserlineViewfinderEnabledColor(color: color)
         }
         set {
-            var viewfinder = laserlineViewfinder
-            viewfinder.enabledColor = newValue.uiColor
-            updateViewfinder(viewfinder)
+            laserlineViewfinder.enabledColor = newValue.uiColor
+            updateViewfinder()
         }
     }
 
@@ -53,9 +52,8 @@ struct SettingsManagerLaserlineViewfinderSection: SettingsManagerViewfinderSecti
             return LaserlineViewfinderDisabledColor(color: color)
         }
         set {
-            var viewfinder = laserlineViewfinder
-            viewfinder.disabledColor = newValue.uiColor
-            updateViewfinder(viewfinder)
+            laserlineViewfinder.disabledColor = newValue.uiColor
+            updateViewfinder()
         }
     }
 }

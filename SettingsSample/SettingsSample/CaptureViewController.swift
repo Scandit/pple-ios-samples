@@ -63,15 +63,8 @@ final class CaptureViewController: UIViewController {
         captureView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.insertSubview(captureView, at: 0)
 
-        let feedback = PriceCheckFeedback(
-            correctPriceFeedback: PriceCheckFeedback.defaultPriceCheckFeedback.correctPriceFeedback,
-            wrongPriceFeedback: nil,
-            unknownProductFeedback: nil
-        )
-
         let priceCheck = PriceCheck(productCatalog: productCatalog, captureView: captureView)
         priceCheck.addListener(self)
-        priceCheck.setFeedback(feedback)
 
         SettingsManager.current.priceCheck = priceCheck
 
@@ -79,14 +72,6 @@ final class CaptureViewController: UIViewController {
         self.captureView = captureView
 
         enableScanning()
-
-        let viewfinderConfiguration = ViewfinderConfiguration(
-            viewfinder: RectangularViewfinder(
-                style: .rounded,
-                lineStyle: .bold
-            )
-        )
-        priceCheck.setViewfinderConfiguration(viewfinderConfiguration)
     }
 
     private func enableScanning() {
@@ -123,7 +108,7 @@ extension CaptureViewController: PriceCheckListener {
         guard let currency else { return }
 
         let capturedPrice = result.capturedPrice.formattedPrice(currency: currency)
-        showNotification(text: "\(result.name ?? "N/A")\nCorrect price: \(capturedPrice)")
+        showNotification(text: "\(result.name ?? "N/A")\nCorrect price: \(capturedPrice)", color: .green)
     }
 
     func onWrongPrice(result: PriceCheckResult) {
@@ -132,7 +117,8 @@ extension CaptureViewController: PriceCheckListener {
         let capturedPrice = result.capturedPrice.formattedPrice(currency: currency)
         let correctPrice = result.correctPrice?.formattedPrice(currency: currency) ?? "N/A"
         showNotification(
-            text: "\(result.name ?? "N/A")\nWrong price: \(capturedPrice), should be \(correctPrice)"
+            text: "\(result.name ?? "N/A")\nWrong price: \(capturedPrice), should be \(correctPrice)",
+            color: .red
         )
     }
 
@@ -140,7 +126,7 @@ extension CaptureViewController: PriceCheckListener {
         guard let currency else { return }
 
         let capturedPrice = result.capturedPrice.formattedPrice(currency: currency)
-        showNotification(text: "Unrecognized product - captured price: \(capturedPrice)")
+        showNotification(text: "Unrecognized product - captured price: \(capturedPrice)", color: .gray)
     }
 
     func onSessionUpdate(_ session: PriceLabelSession, frameData: FrameData) {
@@ -151,8 +137,8 @@ extension CaptureViewController: PriceCheckListener {
         pauseScanning()
     }
 
-    private func showNotification(text: String) {
-        showToast(message: text, attachToBottom: false)
+    private func showNotification(text: String, color: ToastColor) {
+        showToast(message: text, color: color)
     }
 }
 

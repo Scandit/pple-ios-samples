@@ -7,18 +7,20 @@ import ScanditShelf
 
 struct SettingsManagerRectangularViewfinderSection: SettingsManagerViewfinderSection {
 
+    var viewfinder: Viewfinder? {
+        rectangularViewfinder
+    }
+
     let defaultViewfinder = RectangularViewfinder()
 
-    var rectangularViewfinder: RectangularViewfinder {
-        viewfinder as! RectangularViewfinder
-    }
+    var rectangularViewfinder = RectangularViewfinder()
 
     var style: ScanditShelf.RectangularViewfinderStyle {
         get {
             rectangularViewfinder.style
         }
         set {
-            viewfinder = RectangularViewfinder(style: newValue, lineStyle: lineStyle)
+            rectangularViewfinder = RectangularViewfinder(style: newValue, lineStyle: lineStyle)
             updateViewfinder()
         }
     }
@@ -28,7 +30,7 @@ struct SettingsManagerRectangularViewfinderSection: SettingsManagerViewfinderSec
             rectangularViewfinder.lineStyle
         }
         set {
-            viewfinder = RectangularViewfinder(style: style, lineStyle: newValue)
+            rectangularViewfinder = RectangularViewfinder(style: style, lineStyle: newValue)
             updateViewfinder()
         }
     }
