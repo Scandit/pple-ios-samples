@@ -16,7 +16,7 @@ import ScanditShelf
 import UIKit
 
 enum BrushColor: CaseIterable, CustomStringConvertible {
-    case none, red, green, gray
+    case none, red, green, yellow, gray, blue
 
     var description: String {
         switch self {
@@ -24,6 +24,8 @@ enum BrushColor: CaseIterable, CustomStringConvertible {
         case .red: return "Red"
         case .green: return "Green"
         case .gray: return "Gray"
+        case .yellow: return "Yellow"
+        case .blue: return "Blue"
         }
     }
 
@@ -37,17 +39,23 @@ enum BrushColor: CaseIterable, CustomStringConvertible {
             return .green
         case .gray:
             return .gray
+        case .yellow:
+            return .yellow
+        case .blue:
+            return .blue
         }
     }
 }
 
 extension Brush {
-    static let red = Brush(fillColor: UIColor.red.withAlphaComponent(0.2), strokeColor: .red, strokeWidth: 1)
-    static let green = Brush(fillColor: UIColor.green.withAlphaComponent(0.2), strokeColor: .green, strokeWidth: 1)
-    static let gray = Brush(fillColor: UIColor.green.withAlphaComponent(0.2), strokeColor: .gray, strokeWidth: 1)
+    static let red = Brush(fillColor: .red.withAlphaComponent(0.3), strokeColor: .clear, strokeWidth: 0)
+    static let green = Brush(fillColor: .green.withAlphaComponent(0.3), strokeColor: .clear, strokeWidth: 0)
+    static let gray = Brush(fillColor: .gray.withAlphaComponent(0.3), strokeColor: .clear, strokeWidth: 0)
+    static let yellow = Brush(fillColor: .yellow.withAlphaComponent(0.3), strokeColor: .clear, strokeWidth: 0)
+    static let blue = Brush(fillColor: .blue.withAlphaComponent(0.3), strokeColor: .clear, strokeWidth: 0)
 
     static let allBrushes: [Brush] = [
-        .red, .green, .gray
+        .red, .green, .yellow, .gray, .blue
     ]
 }
 
