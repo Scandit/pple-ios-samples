@@ -37,12 +37,15 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
 
         title = .appName
+        textLabel.text = .initial
 
         // Perform the initial steps required for the price checking process, including:
         // - ShelfView authentication,
         // - fetching the list of stores belonging to your organization,
         // - preparing the ProductCatalog
-        authenticateUser()
+        Task { @MainActor in
+            await self.authenticateUser()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -63,43 +66,35 @@ final class MainViewController: UIViewController {
         priceCheck?.disable()
     }
 
-    private func authenticateUser() {
+    private func authenticateUser() async {
         // Use the PPLE Authentication singleton to log in the user to an organization.
-        Authentication.shared.login(
-            username: Credentials.username,
-            password: Credentials.password) { [weak self] result in
-                switch result {
-                case .success:
-                    self?.getStores()
-                case .failure:
-                    self?.updateStatus(message: .authenticationFailed)
-                }
-            }
-    }
-
-    private func getStores() {
-        // Get/Update the list of stores by using the Catalog singleton object of the PPLE SDK.
-        // Pass a CompletionHandler to the getStores method for handling API result.
-        Catalog.shared.getStores { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let stores):
-                    if stores.isEmpty {
-                        self?.updateStatus(message: .storesEmpty)
-                        return
-                    }
-
-                    // Get products for a selected store from your organization.
-                    // For simplicity reasons, below we select the first store on the list.
-                    self?.getProducts(for: stores[0])
-                case .failure:
-                    self?.updateStatus(message: .storeDownloadFailed)
-                }
-            }
+        do {
+            try await Authentication.shared.login(username: Credentials.username, password: Credentials.password)
+            await getStores()
+        } catch {
+            updateStatus(message: .authenticationFailed)
         }
     }
 
-    private func getProducts(for store: Store) {
+    private func getStores() async {
+        // Get/Update the list of stores by using the Catalog singleton object of the PPLE SDK.
+        // Pass a CompletionHandler to the getStores method for handling API result.
+        do {
+            let stores = try await Catalog.shared.getStores()
+            if stores.isEmpty {
+                updateStatus(message: .storesEmpty)
+                return
+            }
+
+            // Get products for a selected store from your organization.
+            // For simplicity reasons, below we select the first store on the list.
+            await getProducts(for: stores[0])
+        } catch {
+            updateStatus(message: .storeDownloadFailed)
+        }
+    }
+
+    private func getProducts(for store: Store) async {
         title = store.name
         currency = store.currency
         // Get/Update the Product items for a given Store.
@@ -113,15 +108,11 @@ final class MainViewController: UIViewController {
         // you should should pass your custom implementation of the ProductProvider interface, as the second argument
         // for the Catalog.shared.getProductCatalog method - check the docs for more details.
         productCatalog = Catalog.shared.getProductCatalog(storeID: store.id)
-        productCatalog?.update { [weak self] result in
-            switch result {
-            case .success:
-                DispatchQueue.main.async {
-                    self?.initializeCaptureViewAndPriceCheck()
-                }
-            case .failure:
-                self?.updateStatus(message: .catalogDownloadFailed(storeName: store.name))
-            }
+        do {
+            try await productCatalog?.update()
+            initializeCaptureViewAndPriceCheck()
+        } catch {
+            updateStatus(message: .catalogDownloadFailed(storeName: store.name))
         }
     }
 

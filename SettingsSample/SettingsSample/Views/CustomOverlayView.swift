@@ -12,6 +12,12 @@ class CustomOverlayView: UIView {
     var currency: Currency?
     var captureView: CaptureView?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        isUserInteractionEnabled = false
+    }
+
     public func updateOverlay(session: PriceLabelSession, captureView: CaptureView) {
         session.removedLabels.forEach { priceLabel in
             let view = augmentationViews[priceLabel.trackingId]

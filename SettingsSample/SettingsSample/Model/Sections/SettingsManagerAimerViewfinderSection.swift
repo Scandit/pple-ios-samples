@@ -5,7 +5,7 @@
 import Foundation
 import ScanditShelf
 
-struct SettingsManagerAimerViewfinderSection: SettingsManagerViewfinderSection {
+final class SettingsManagerAimerViewfinderSection: SettingsManagerViewfinderSection {
     var viewfinder: Viewfinder? { aimerViewfinder }
 
     let defaultViewfinder = AimerViewfinder()

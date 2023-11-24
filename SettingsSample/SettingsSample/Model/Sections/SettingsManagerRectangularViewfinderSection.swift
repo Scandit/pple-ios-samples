@@ -5,7 +5,7 @@
 import Foundation
 import ScanditShelf
 
-struct SettingsManagerRectangularViewfinderSection: SettingsManagerViewfinderSection {
+final class SettingsManagerRectangularViewfinderSection: SettingsManagerViewfinderSection {
 
     var viewfinder: Viewfinder? {
         rectangularViewfinder

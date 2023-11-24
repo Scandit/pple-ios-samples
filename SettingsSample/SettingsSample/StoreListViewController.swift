@@ -41,7 +41,6 @@ final class StoreListViewController: UIViewController {
         super.viewDidLoad()
 
         setUpSearch()
-        activityIndicator.startAnimating()
         fetchStores()
 
         tableView.refreshControl = refreshControl
@@ -56,23 +55,17 @@ final class StoreListViewController: UIViewController {
 
     @IBAction private func onLogOut(_ sender: Any) {
         activityIndicator.startAnimating()
-        authentication.logout { [weak self] result in
+
+        Task { @MainActor [weak self] in
             guard let self else { return }
 
-            DispatchQueue.main.async {
-                self.handleLogout(result: result)
+            do {
+                try await authentication.logout()
+            } catch {
+                showToast(message: error.localizedDescription)
             }
-        }
-    }
-
-    private func handleLogout(result: Result<Void, Error>) {
-        activityIndicator.stopAnimating()
-
-        switch result {
-        case .failure(let error):
-            showToast(message: error.localizedDescription)
-            fallthrough
-        case .success:
+            
+            activityIndicator.stopAnimating()
             perform(segue: .unwindToLogin)
         }
     }
@@ -93,20 +86,20 @@ final class StoreListViewController: UIViewController {
     }
 
     private func fetchStores() {
-        catalog.getStores { [weak self] result in
-            guard let self = self else { return }
+        activityIndicator.startAnimating()
 
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.refreshControl.endRefreshing()
-                
-                switch result {
-                case .success(let stores):
-                    self.update(stores: stores)
-                case .failure(let error):
-                    self.showToast(message: error.localizedDescription)
-                }
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+
+            do {
+                let stores = try await self.catalog.getStores()
+                self.update(stores: stores)
+            } catch {
+                self.showToast(message: error.localizedDescription)
             }
+
+            self.activityIndicator.stopAnimating()
+            self.refreshControl.endRefreshing()
         }
     }
 
@@ -124,26 +117,24 @@ final class StoreListViewController: UIViewController {
         if let selectedStore = selectedStore, selectedStore.id == store.id {
             // All required data are fetched and configured.
             view.isUserInteractionEnabled = true
-            self.perform(segue: .showCaptureView, sender: nil)
+            perform(segue: .showCaptureView, sender: nil)
             return
         }
 
         activityIndicator.startAnimating()
+        Task { @MainActor [weak self] in
+            guard let self else { return }
 
-        productCatalog?.update { [weak self] result in
-            guard let self = self else { return }
-
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.view.isUserInteractionEnabled = true
-                switch result {
-                case .success:
-                    self.selectedStore = store
-                    self.perform(segue: .showCaptureView, sender: nil)
-                case .failure(let error):
-                    self.showToast(message: error.localizedDescription)
-                }
+            do {
+                try await productCatalog?.update()
+                self.selectedStore = store
+                self.perform(segue: .showCaptureView, sender: nil)
+            } catch {
+                self.showToast(message: error.localizedDescription)
             }
+
+            self.activityIndicator.stopAnimating()
+            self.view.isUserInteractionEnabled = true
         }
     }
 

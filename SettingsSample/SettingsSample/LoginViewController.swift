@@ -58,21 +58,18 @@ final class LoginViewController: UIViewController {
 
         activityIndicator.startAnimating()
 
-        authentication.login(
-            username: usernameField.text ?? "", password: passwordField.text ?? ""
-        ) { [weak self] result in
-            guard let self = self else { return }
-
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                switch result {
-                case .success:
-                    self.perform(segue: .showStores)
-                case .failure(let error):
-                    self.onInvalidCredentials()
-                    self.showToast(message: error.localizedDescription)
-                }
+        Task { @MainActor [self] in
+            do {
+                try await authentication.login(
+                    username: usernameField.text ?? "", password: passwordField.text ?? ""
+                )
+                perform(segue: .showStores)
+            } catch {
+                onInvalidCredentials()
+                showToast(message: error.localizedDescription)
             }
+
+            activityIndicator.stopAnimating()
         }
     }
 

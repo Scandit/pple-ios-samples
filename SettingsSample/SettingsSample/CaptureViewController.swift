@@ -31,7 +31,13 @@ final class CaptureViewController: UIViewController {
 
     private var captureView: CaptureView?
     private var priceCheck: PriceCheck?
-    private var isScanningEnabled = false
+    private var isScanningEnabled = false {
+        didSet {
+            messageLabel.isHidden = isScanningEnabled
+            tapGestureRecognizer.isEnabled = !isScanningEnabled
+            captureView?.isUserInteractionEnabled = isScanningEnabled
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +83,6 @@ final class CaptureViewController: UIViewController {
     private func enableScanning() {
         isScanningEnabled = true
         priceCheck?.enable()
-        messageLabel.isHidden = true
-        tapGestureRecognizer.isEnabled = false
     }
 
     private func pauseScanning() {
@@ -86,8 +90,6 @@ final class CaptureViewController: UIViewController {
 
         isScanningEnabled = false
         priceCheck?.disable()
-        messageLabel.isHidden = false
-        tapGestureRecognizer.isEnabled = true
     }
 }
 

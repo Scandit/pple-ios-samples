@@ -26,6 +26,8 @@ extension LaserlineViewfinderStyle: CaseIterable, CustomStringConvertible, Custo
             return "Legacy"
         case .animated:
             return "Animated"
+        @unknown default:
+            preconditionFailure("Unhandled case - \(self)")
         }
     }
 
@@ -48,6 +50,8 @@ extension RectangularViewfinderStyle: CaseIterable, CustomStringConvertible, Cus
             return "Square"
         case .rounded:
             return "Rounded"
+        @unknown default:
+            preconditionFailure("Unhandled case - \(self)")
         }
     }
 
@@ -68,6 +72,8 @@ extension RectangularViewfinderLineStyle: CaseIterable, CustomStringConvertible,
             return "Bold"
         case .light:
             return "Light"
+        @unknown default:
+            preconditionFailure("Unhandled case - \(self)")
         }
     }
 

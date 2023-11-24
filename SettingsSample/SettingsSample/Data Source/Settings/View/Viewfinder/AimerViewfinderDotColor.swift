@@ -18,9 +18,9 @@ enum AimerViewfinderDotColor: CaseIterable, CustomStringConvertible {
     case `default`, blue, red
 
     init(color: UIColor) {
-        if color ~= UIColor.red.withAlphaComponent(0.8) {
+        if color ~= UIColor.red {
             self = .red
-        } else if color ~= UIColor.blue.withAlphaComponent(0.8) {
+        } else if color ~= UIColor.blue {
             self = .blue
         } else {
             self = .default

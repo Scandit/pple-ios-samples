@@ -11,26 +11,31 @@ let package = Package(
             "ScanditShelf",
             "ScanditBarcodeCapture",
             "ScanditCaptureCore",
-            "ScanditLabelCapture"
+            "ScanditLabelCapture",
+            "ScanditPriceLabel"
         ])
     ],
     dependencies: [],
     targets: [
-  		.binaryTarget(
+      .binaryTarget(
   			name: "ScanditShelf",
-  			path: "ScanditSDK/ScanditShelf.xcframework"
+  			path: "../../ScanditSDK/ScanditShelf.xcframework"
   		),
   		.binaryTarget(
   			name: "ScanditBarcodeCapture",
-  			path: "ScanditSDK/ScanditBarcodeCapture.xcframework"
+  			path: "../../ScanditSDK/ScanditBarcodeCapture.xcframework"
   		),
   		.binaryTarget(
   			name: "ScanditCaptureCore",
-  			path: "ScanditSDK/ScanditCaptureCore.xcframework"
+  			path: "../../ScanditSDK/ScanditCaptureCore.xcframework"
   		),
   		.binaryTarget(
   			name: "ScanditLabelCapture",
-  			path: "ScanditSDK/ScanditLabelCapture.xcframework"
+  			path: "../../ScanditSDK/ScanditLabelCapture.xcframework"
+  		),
+  		.binaryTarget(
+  			name: "ScanditPriceLabel",
+  			path: "../../ScanditSDK/ScanditPriceLabel.xcframework"
   		)
     ]
 )

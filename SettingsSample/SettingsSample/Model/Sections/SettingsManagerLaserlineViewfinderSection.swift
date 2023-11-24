@@ -9,7 +9,7 @@ final class SettingsManagerLaserlineViewfinderSection: SettingsManagerViewfinder
 
     var viewfinder: Viewfinder? { laserlineViewfinder }
 
-    let defaultViewfinder = LaserlineViewfinder()
+    var defaultViewfinder: LaserlineViewfinder { LaserlineViewfinder(style: style) }
 
     var laserlineViewfinder = LaserlineViewfinder()
 

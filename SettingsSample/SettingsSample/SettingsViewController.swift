@@ -40,7 +40,7 @@ final class SettingsViewController: UIViewController {
 
         setUpSearch()
         activityIndicator.startAnimating()
-        fetchStores()
+        startFetchingStores()
 
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(reloadStores), for: .valueChanged)
@@ -61,18 +61,19 @@ final class SettingsViewController: UIViewController {
         searchBar.searchTextField.delegate = self
     }
 
-    private func fetchStores() {
-        catalog.getStores { [weak self] result in
-            guard let self = self else { return }
-            self.activityIndicator.stopAnimating()
-            self.refreshControl.endRefreshing()
+    private func startFetchingStores() {
+        Task { @MainActor [weak self] in
+            guard let self else { return }
 
-            switch result {
-            case .success(let stores):
+            do {
+                let stores = try await catalog.getStores()
                 self.update(stores: stores)
-            case .failure(let error):
+            } catch {
                 self.showToast(message: error.localizedDescription)
             }
+
+            self.activityIndicator.stopAnimating()
+            self.refreshControl.endRefreshing()
         }
     }
 
@@ -96,26 +97,27 @@ final class SettingsViewController: UIViewController {
 
         activityIndicator.startAnimating()
 
-        productCatalog?.update { [weak self] result in
-            guard let self = self else { return }
+        Task { @MainActor [weak self] in
+            guard let self else { return }
 
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.view.isUserInteractionEnabled = true
-                switch result {
-                case .success:
-                    self.selectedStore = store
-                    self.perform(segue: .showCaptureView, sender: nil)
-                case .failure(let error):
-                    self.showToast(message: error.localizedDescription)
-                }
+            do {
+                try await productCatalog?.update()
+
+                self.selectedStore = store
+                self.perform(segue: .showCaptureView, sender: nil)
+            } catch {
+                self.showToast(message: error.localizedDescription)
             }
+
+            self.activityIndicator.stopAnimating()
+            self.view.isUserInteractionEnabled = true
+
         }
     }
 
     @objc private func reloadStores() {
         update(stores: [])
-        fetchStores()
+        startFetchingStores()
     }
 
     private func update(stores: [Store]) {

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import UIKit
+import SwiftUI
 import ScanditShelf
 
 enum Credentials {
@@ -21,49 +21,31 @@ enum Credentials {
     static let password: String = "-- ENTER YOUR SCANDIT SHELFVIEW PASSWORD HERE --"
 }
 
-final class MainViewController: UIViewController {
+@MainActor
+final class MainViewModel: ObservableObject {
 
-    @IBOutlet private weak var textLabel: UILabel!
+    @Published var title = String.appName
+    @Published var text = String.initial
+    @Published var captureView = CaptureView()
+    @Published var toast: ToastViewModel?
 
     private var productCatalog: ProductCatalog?
     private var priceCheck: PriceCheck?
-    private var captureView: CaptureView?
 
     private var currency: Currency?
 
     private let delegate = DefaultPriceCheckAdvancedOverlayDelegate()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        title = .appName
-        textLabel.text = .initial
-
-        // Perform the initial steps required for the price checking process, including:
-        // - ShelfView authentication,
-        // - fetching the list of stores belonging to your organization,
-        // - preparing the ProductCatalog
-        Task { @MainActor in
-            await self.authenticateUser()
+    private var timer: Timer? {
+        willSet {
+            timer?.invalidate()
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        // Enables the price check, which will start the camera and begin processing the camera frames.
-        // Should only be called after the priceCheck instance has been initialized,
-        // otherwise the method will have no effect.
-        priceCheck?.enable()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-
-        // Disables the price check, which will stop the camera and the processing of the camera frames.
-        // Should only be called after the priceCheck instance has been initialized,
-        // otherwise the method will have no effect.
-        priceCheck?.disable()
+    func onAppear() {
+        Task {
+            await self.authenticateUser()
+        }
     }
 
     private func authenticateUser() async {
@@ -97,15 +79,17 @@ final class MainViewController: UIViewController {
     private func getProducts(for store: Store) async {
         title = store.name
         currency = store.currency
+        // Get/Update the Product items for a given Store.
 
-        // Create a ProductCatalog representing a collection of products available for the specified store.
-        // By default, the ProductCatalog returned by this method, would use the data retrieved
-        // from the ShelfView backend. In this case however, we are providing ExternalProductProvider,
-        // as the optional second argument of the method.
-        // As a result, the returned ProductCatalog will use the ExternalProductProvider as a custom
-        // source of product information instead of fetching the data from the ShelfView backend.
-        let provider = ExternalProductProvider(store: store)
-        productCatalog = Catalog.shared.getProductCatalog(storeID: store.id, provider: provider)
+        // First create the ProductCatalog object.
+        //
+        // If you are using the ShelfView backend as your product catalog provider, you only need to specify the Store,
+        // for which you will perform the Price Check - just like in the code below.
+        //
+        // If on the other hand, you would like to use a different source of data for the ProductCatalog,
+        // you should should pass your custom implementation of the ProductProvider interface, as the second argument
+        // for the Catalog.shared.getProductCatalog method - check the docs for more details.
+        productCatalog = Catalog.shared.getProductCatalog(storeID: store.id)
         do {
             try await productCatalog?.update()
             initializeCaptureViewAndPriceCheck()
@@ -121,9 +105,7 @@ final class MainViewController: UIViewController {
 
         updateStatus(message: .empty)
 
-        let captureView = CaptureView(frame: view.bounds)
         captureView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.insertSubview(captureView, at: 0)
 
         let priceCheck = PriceCheck(productCatalog: productCatalog, captureView: captureView)
         priceCheck.addListener(self)
@@ -158,12 +140,12 @@ final class MainViewController: UIViewController {
 
     private func updateStatus(message: String) {
         DispatchQueue.main.async {
-            self.textLabel.text = message
+            self.text = message
         }
     }
 }
 
-extension MainViewController: PriceCheckListener {
+extension MainViewModel: PriceCheckListener {
     func onCorrectPrice(result: PriceCheckResult) {
         // Handle result that a Product label was scanned with correct price
         showToast(result: result, color: .green)
@@ -186,6 +168,13 @@ extension MainViewController: PriceCheckListener {
     }
 
     func onSessionUpdate(_ session: ScanditShelf.PriceLabelSession, frameData: FrameData) {}
+
+    private func showToast(message: String, color: ToastColor) {
+        toast = ToastViewModel(message: message, color: color)
+        timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { [unowned self] _ in
+            self.toast = nil
+        })
+    }
 }
 
 private extension PriceCheckResult {

@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-import ScanditShelf
+import SwiftUI
 
-extension SettingsManager {
+@main
+struct SampleApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    var shouldShowScanAreaGuides: Bool {
-        get {
-            return viewfinderConfiguration.shouldShowScanAreaGuides
-        }
-        set {
-            viewfinderConfiguration.shouldShowScanAreaGuides = newValue
+    let viewModel = MainViewModel()
+
+    var body: some Scene {
+        WindowGroup {
+            MainView(viewModel: viewModel)
         }
     }
-
 }
