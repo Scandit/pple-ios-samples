@@ -145,4 +145,15 @@ final class SettingsManagerRectangularViewfinderSection: SettingsManagerViewfind
             updateViewfinder()
         }
     }
+
+    init() {
+        DispatchQueue.main.async { [self] in
+            style = .rounded
+            widthAndHeight = .init(
+                width: .init(value: 0.9, unit: .fraction),
+                height: .init(value: 0.3, unit: .fraction)
+            )
+            dimming = 0.6
+        }
+    }
 }

@@ -18,7 +18,7 @@ import UIKit
 
 // swiftlint:disable type_body_length
 
-class SettingsManager {
+final class SettingsManager {
 
     static let current = SettingsManager()
 
@@ -29,17 +29,6 @@ class SettingsManager {
                 advancedOverlay.updateOverlay()
                 feedback.updateFeedback()
                 viewfinderConfiguration.updateConfiguration()
-
-                rectangularViewfinder.style = .rounded
-                rectangularViewfinder.widthAndHeight = .init(
-                    width: .init(value: 0.9, unit: .fraction),
-                    height: .init(value: 0.3, unit: .fraction)
-                )
-                rectangularViewfinder.dimming = 0.6
-                viewfinderConfiguration.locationSelection = RectangularLocationSelection(size: .init(
-                    width: .init(value: 0.9, unit: .fraction),
-                    height: .init(value: 0.3, unit: .fraction)
-                ))
             }
         }
     }

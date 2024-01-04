@@ -24,6 +24,15 @@ final class SettingsManagerViewfinderConfigurationSection: SettingsManagerSectio
         }
     }
 
+    init() {
+        DispatchQueue.main.async { [self] in
+            locationSelection = RectangularLocationSelection(size: .init(
+                width: .init(value: 0.9, unit: .fraction),
+                height: .init(value: 0.3, unit: .fraction)
+            ))
+        }
+    }
+
     func updateConfiguration() {
         priceCheck.setViewfinderConfiguration(viewfinderConfiguration)
     }
