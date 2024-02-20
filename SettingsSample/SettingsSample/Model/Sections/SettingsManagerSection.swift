@@ -22,6 +22,7 @@ protocol SettingsManagerViewfinderSection: SettingsManagerSection {
 }
 
 extension SettingsManagerViewfinderSection {
+
     var viewfinderConfiguration: SettingsManagerViewfinderConfigurationSection {
         SettingsManager.current.viewfinderConfiguration
     }
