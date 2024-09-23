@@ -19,28 +19,28 @@ let package = Package(
     targets: [
 		.binaryTarget(
 			name: "ScanditShelf",
-			url: "https://shelf.scandit.com/packages/pple-sdk-ios-1.4.1.zip",
-			checksum: "58c5485a462bbc380b67011e3297f6f8e94f561ae1a275ea6b0d6103e3ae672b"
+			url: "https://shelf.scandit.com/packages/pple-sdk-ios-1.5.0.zip",
+			checksum: "8f5dbab79757d95b75e8300163aca30486c9c4548ffbae796665206cfdc4a7f0"
 		),
 		.binaryTarget(
 			name: "ScanditBarcodeCapture",
-			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-barcode-6.21.2-xcframework.zip",
-			checksum: "43f22e24ffe64ea139107aab1c8fa5f9e82baaf506ccaca1742804e397c481b7"
+			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-barcode-6.26.0-xcframework.zip",
+			checksum: "732ffd2c723e0cbf839e567bfea1c3ac58dcb59d1775999558dd25ccc8e6d070"
 		),
 		.binaryTarget(
 			name: "ScanditCaptureCore",
-			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-core-6.21.2-xcframework.zip",
-			checksum: "f410a86847d54e14381e679a2c765b231c0e30856b8eee008a74fedce63f4f7c"
+			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-core-6.26.0-xcframework.zip",
+			checksum: "714c4a3bcfcb2a432fa171fb4bcc342a18abf68fae8ac67bb16c84aa776bf6cd"
 		),
 		.binaryTarget(
 			name: "ScanditLabelCapture",
-			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-label-6.21.2-xcframework.zip",
-			checksum: "730f240b8c166eb6fa7c6e178b1a64c7070223667f1f529766ee36ed953dc2f0"
+			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-label-6.26.0-xcframework.zip",
+			checksum: "86aeb719b7211407e714c397d82afeb3a4a7a063840b6029dd668806eb5097b0"
 		),
 		.binaryTarget(
 			name: "ScanditPriceLabel",
-			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-label-plv-models-6.21.2-xcframework.zip",
-			checksum: "16384215298367158e51848228fdbb7373d88204b7fbc52b8cc19bdd9a9f3162"
+			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-label-plv-models-6.26.0-xcframework.zip",
+			checksum: "c9cc86a7a10b9b0f46e5a6ab45dbf5eb68138bc5243fd3fcf30ec7846c5f0993"
 		)
     ]
 )
