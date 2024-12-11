@@ -19,28 +19,28 @@ let package = Package(
     targets: [
 		.binaryTarget(
 			name: "ScanditShelf",
-			url: "https://shelf.scandit.com/packages/pple-sdk-ios-1.5.0.zip",
-			checksum: "8f5dbab79757d95b75e8300163aca30486c9c4548ffbae796665206cfdc4a7f0"
+			url: "https://shelf.scandit.com/packages/pple-sdk-ios-1.6.0-beta.1.zip",
+			checksum: "c1d63b61383c51e392bbe723ebea084a6e8eab5ef526c635d878f95b6f88e546"
 		),
 		.binaryTarget(
 			name: "ScanditBarcodeCapture",
-			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-barcode-6.26.0-xcframework.zip",
-			checksum: "732ffd2c723e0cbf839e567bfea1c3ac58dcb59d1775999558dd25ccc8e6d070"
+			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-barcode-6.28.1-xcframework.zip",
+			checksum: "979434fbb67b6f96fed6b116921bc97958dead7c1c63db554053eb4e2aaf5ad1"
 		),
 		.binaryTarget(
 			name: "ScanditCaptureCore",
-			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-core-6.26.0-xcframework.zip",
-			checksum: "714c4a3bcfcb2a432fa171fb4bcc342a18abf68fae8ac67bb16c84aa776bf6cd"
+			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-core-6.28.1-xcframework.zip",
+			checksum: "2d4ba0576d3c7a4e66d02aa9b8dfa956bbd99681a170b3adab76c150c29997bd"
 		),
 		.binaryTarget(
 			name: "ScanditLabelCapture",
-			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-label-6.26.0-xcframework.zip",
-			checksum: "86aeb719b7211407e714c397d82afeb3a4a7a063840b6029dd668806eb5097b0"
+			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-label-6.28.1-xcframework.zip",
+			checksum: "cf348c25ac58a2990877214ad02e8bdab9be1ef5e950cded1be670f76dac4816"
 		),
 		.binaryTarget(
 			name: "ScanditPriceLabel",
-			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-label-plv-models-6.26.0-xcframework.zip",
-			checksum: "c9cc86a7a10b9b0f46e5a6ab45dbf5eb68138bc5243fd3fcf30ec7846c5f0993"
+			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-label-plv-models-6.28.1-xcframework.zip",
+			checksum: "8031fcf5a99401145234363bbed89915b3f3e96d4e4ba990f37b86928e8722d7"
 		)
     ]
 )
