@@ -12,15 +12,19 @@
  * limitations under the License.
  */
 
-enum RectangularSizeSpecification: CaseIterable, CustomStringConvertible {
-    case widthAndHeight, widthAndHeightAspect, heightAndWidthAspect, shorterDimensionAndAspectRatio
+import UIKit
+import SwiftUI
 
-    var description: String {
-        switch self {
-        case .widthAndHeight: "Width and Height"
-        case .widthAndHeightAspect: "Width and Height Aspect"
-        case .heightAndWidthAspect: "Height and Width Aspect"
-        case .shorterDimensionAndAspectRatio: "Shorter Dimension and Aspect Ratio"
-        }
+struct CaptureViewRepresentable: UIViewRepresentable {
+
+    let captureView: UIView
+
+    func makeUIView(context: Context) -> UIView {
+        captureView
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {
+        // nothing here.
     }
 }
+

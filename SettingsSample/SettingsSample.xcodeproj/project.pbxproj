@@ -38,12 +38,10 @@
 		C0904F1229B505A2007D5A82 /* DataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1F529B4FA4400DF459D /* DataSourceDelegate.swift */; };
 		C0904F1429B505C6007D5A82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0904F1329B505C6007D5A82 /* Constants.swift */; };
 		C0904F2229B505E0007D5A82 /* RectangularViewfinderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1EE29B4FA4400DF459D /* RectangularViewfinderColor.swift */; };
-		C0904F2529B505E0007D5A82 /* LaserlineViewfinderDisabledColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1E829B4FA4400DF459D /* LaserlineViewfinderDisabledColor.swift */; };
 		C0904F2829B505E0007D5A82 /* RectangularViewfinderDisabledColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1ED29B4FA4400DF459D /* RectangularViewfinderDisabledColor.swift */; };
 		C0904F2929B505E0007D5A82 /* ViewfinderDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1EC29B4FA4400DF459D /* ViewfinderDataSource.swift */; };
 		C0904F2B29B505E0007D5A82 /* AimerViewfinderFrameColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1EA29B4FA4400DF459D /* AimerViewfinderFrameColor.swift */; };
 		C0904F2C29B505E0007D5A82 /* AimerViewfinderDotColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1EB29B4FA4400DF459D /* AimerViewfinderDotColor.swift */; };
-		C0904F2F29B505E0007D5A82 /* LaserlineViewfinderEnabledColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010C1E929B4FA4400DF459D /* LaserlineViewfinderEnabledColor.swift */; };
 		C0904F5029B674C8007D5A82 /* PriceCheckFeedbackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0904F4F29B674C8007D5A82 /* PriceCheckFeedbackTableViewController.swift */; };
 		C0904F5229B675C6007D5A82 /* PriceCheckFeedbackDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0904F5129B675C6007D5A82 /* PriceCheckFeedbackDataSource.swift */; };
 		C0904F5329B86C36007D5A82 /* PriceCheckFeedbackSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0904F4E29B67331007D5A82 /* PriceCheckFeedbackSettings.storyboard */; };
@@ -62,7 +60,6 @@
 		D366425F2A976EAF00AC82EF /* SettingsManagerFeedbackSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366425E2A976EAF00AC82EF /* SettingsManagerFeedbackSection.swift */; };
 		D36642612A976F8800AC82EF /* SettingsManagerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36642602A976F8800AC82EF /* SettingsManagerSection.swift */; };
 		D36642632A97701A00AC82EF /* SettingsManagerViewfinderConfigurationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36642622A97701A00AC82EF /* SettingsManagerViewfinderConfigurationSection.swift */; };
-		D36642652A9770C700AC82EF /* SettingsManagerLaserlineViewfinderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36642642A9770C700AC82EF /* SettingsManagerLaserlineViewfinderSection.swift */; };
 		D36642672A97738700AC82EF /* SettingsManagerAimerViewfinderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36642662A97738700AC82EF /* SettingsManagerAimerViewfinderSection.swift */; };
 		D36642692A97739A00AC82EF /* SettingsManagerRectangularViewfinderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36642682A97739A00AC82EF /* SettingsManagerRectangularViewfinderSection.swift */; };
 		D366426B2A97742F00AC82EF /* SettingsManagerBasicOverlaySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366426A2A97742F00AC82EF /* SettingsManagerBasicOverlaySection.swift */; };
@@ -103,8 +100,6 @@
 		C010C1D929B4FA4400DF459D /* RectangularSizeSpecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangularSizeSpecification.swift; sourceTree = "<group>"; };
 		C010C1E429B4FA4400DF459D /* ScanAreaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanAreaDataSource.swift; sourceTree = "<group>"; };
 		C010C1E629B4FA4400DF459D /* OverlayDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayDataSource.swift; sourceTree = "<group>"; };
-		C010C1E829B4FA4400DF459D /* LaserlineViewfinderDisabledColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaserlineViewfinderDisabledColor.swift; sourceTree = "<group>"; };
-		C010C1E929B4FA4400DF459D /* LaserlineViewfinderEnabledColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaserlineViewfinderEnabledColor.swift; sourceTree = "<group>"; };
 		C010C1EA29B4FA4400DF459D /* AimerViewfinderFrameColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimerViewfinderFrameColor.swift; sourceTree = "<group>"; };
 		C010C1EB29B4FA4400DF459D /* AimerViewfinderDotColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimerViewfinderDotColor.swift; sourceTree = "<group>"; };
 		C010C1EC29B4FA4400DF459D /* ViewfinderDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewfinderDataSource.swift; sourceTree = "<group>"; };
@@ -149,7 +144,6 @@
 		D366425E2A976EAF00AC82EF /* SettingsManagerFeedbackSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerFeedbackSection.swift; sourceTree = "<group>"; };
 		D36642602A976F8800AC82EF /* SettingsManagerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerSection.swift; sourceTree = "<group>"; };
 		D36642622A97701A00AC82EF /* SettingsManagerViewfinderConfigurationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerViewfinderConfigurationSection.swift; sourceTree = "<group>"; };
-		D36642642A9770C700AC82EF /* SettingsManagerLaserlineViewfinderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerLaserlineViewfinderSection.swift; sourceTree = "<group>"; };
 		D36642662A97738700AC82EF /* SettingsManagerAimerViewfinderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerAimerViewfinderSection.swift; sourceTree = "<group>"; };
 		D36642682A97739A00AC82EF /* SettingsManagerRectangularViewfinderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerRectangularViewfinderSection.swift; sourceTree = "<group>"; };
 		D366426A2A97742F00AC82EF /* SettingsManagerBasicOverlaySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerBasicOverlaySection.swift; sourceTree = "<group>"; };
@@ -259,8 +253,6 @@
 		C010C1E729B4FA4400DF459D /* Viewfinder */ = {
 			isa = PBXGroup;
 			children = (
-				C010C1E829B4FA4400DF459D /* LaserlineViewfinderDisabledColor.swift */,
-				C010C1E929B4FA4400DF459D /* LaserlineViewfinderEnabledColor.swift */,
 				C010C1EA29B4FA4400DF459D /* AimerViewfinderFrameColor.swift */,
 				C010C1EB29B4FA4400DF459D /* AimerViewfinderDotColor.swift */,
 				C010C1EC29B4FA4400DF459D /* ViewfinderDataSource.swift */,
@@ -380,7 +372,6 @@
 				D366425E2A976EAF00AC82EF /* SettingsManagerFeedbackSection.swift */,
 				D36642602A976F8800AC82EF /* SettingsManagerSection.swift */,
 				D36642622A97701A00AC82EF /* SettingsManagerViewfinderConfigurationSection.swift */,
-				D36642642A9770C700AC82EF /* SettingsManagerLaserlineViewfinderSection.swift */,
 				D36642662A97738700AC82EF /* SettingsManagerAimerViewfinderSection.swift */,
 				D36642682A97739A00AC82EF /* SettingsManagerRectangularViewfinderSection.swift */,
 				D366426A2A97742F00AC82EF /* SettingsManagerBasicOverlaySection.swift */,
@@ -489,7 +480,6 @@
 				C0904F1029B505A2007D5A82 /* SliderCell.swift in Sources */,
 				D366426F2A9774E500AC82EF /* SettingsManagerCustomOverlaySection.swift in Sources */,
 				C0904F2929B505E0007D5A82 /* ViewfinderDataSource.swift in Sources */,
-				C0904F2F29B505E0007D5A82 /* LaserlineViewfinderEnabledColor.swift in Sources */,
 				C0904F5D29BA8277007D5A82 /* MeasureUnit+Extensions.swift in Sources */,
 				C01BC0C5280E9432005BC2EA /* LoginViewController.swift in Sources */,
 				C0904F5229B675C6007D5A82 /* PriceCheckFeedbackDataSource.swift in Sources */,
@@ -524,7 +514,6 @@
 				C062980F27FEA948009EE5F2 /* SceneDelegate.swift in Sources */,
 				C0904F2C29B505E0007D5A82 /* AimerViewfinderDotColor.swift in Sources */,
 				C0904F5B29BA5933007D5A82 /* ViewfinderStyles.swift in Sources */,
-				C0904F2529B505E0007D5A82 /* LaserlineViewfinderDisabledColor.swift in Sources */,
 				D366426B2A97742F00AC82EF /* SettingsManagerBasicOverlaySection.swift in Sources */,
 				C0904F0829B505A2007D5A82 /* FloatInputCell.swift in Sources */,
 				D36642672A97738700AC82EF /* SettingsManagerAimerViewfinderSection.swift in Sources */,
@@ -541,7 +530,6 @@
 				C0904EFD29B50582007D5A82 /* ChoiceViewController.swift in Sources */,
 				D3D1C1072A8F924A004165CF /* PriceCheckFlowDataSource.swift in Sources */,
 				C0800A962A557D0E00093419 /* CustomOverlayView.swift in Sources */,
-				D36642652A9770C700AC82EF /* SettingsManagerLaserlineViewfinderSection.swift in Sources */,
 				D366425F2A976EAF00AC82EF /* SettingsManagerFeedbackSection.swift in Sources */,
 				C0904F0929B505A2007D5A82 /* UITableView+Utils.swift in Sources */,
 			);

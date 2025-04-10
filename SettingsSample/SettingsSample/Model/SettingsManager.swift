@@ -45,8 +45,6 @@ final class SettingsManager {
 
     var viewfinderConfiguration = SettingsManagerViewfinderConfigurationSection()
 
-    var laserlineViewfinder = SettingsManagerLaserlineViewfinderSection()
-
     var rectangularViewfinder = SettingsManagerRectangularViewfinderSection()
 
     var aimerViewfinder = SettingsManagerAimerViewfinderSection()

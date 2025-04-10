@@ -90,24 +90,25 @@ final class SettingsManagerRectangularViewfinderSection: SettingsManagerViewfind
     }
 
     // MARK: Size
-    private let defaultLegacySize = RectangularViewfinder(
-        style: .legacy,
-        lineStyle: .light
-    ).sizeWithUnitAndAspect.widthAndHeight!
-
     var viewfinderSizeSpecification: RectangularSizeSpecification = .widthAndHeight {
         didSet {
             /// Update the viewfinder when we update the size specification.
             switch viewfinderSizeSpecification {
+            case .shorterDimensionAndAspectRatio:
+                rectangularViewfinder = .init(style: .rounded, lineStyle: .light)
+                updateViewfinder()
             case .widthAndHeight:
-                widthAndHeight = defaultLegacySize
+                widthAndHeight = .init(
+                    width: .defaultSizeWidth,
+                    height: .defaultSizeHeight
+                )
             case .widthAndHeightAspect:
                 widthAndAspectRatio = SizeWithAspect(
-                    size: .init(value: defaultLegacySize.width.value, unit: .fraction),
+                    size: .defaultSizeWidth,
                     aspect: 0.0)
             case .heightAndWidthAspect:
                 heightAndAspectRatio = SizeWithAspect(
-                    size: .init(value: defaultLegacySize.height.value, unit: .fraction),
+                    size: .defaultSizeHeight,
                     aspect: 0.0)
             }
         }
@@ -156,4 +157,9 @@ final class SettingsManagerRectangularViewfinderSection: SettingsManagerViewfind
             dimming = 0.6
         }
     }
+}
+
+private extension FloatWithUnit {
+    static let defaultSizeWidth = FloatWithUnit(value: 0.8, unit: .fraction)
+    static let defaultSizeHeight = FloatWithUnit(value: 0.325, unit: .fraction)
 }

@@ -19,28 +19,28 @@ let package = Package(
     targets: [
 		.binaryTarget(
 			name: "ScanditShelf",
-			url: "https://shelf.scandit.com/packages/pple-sdk-ios-1.6.0.zip",
-			checksum: "06696c864e7bd64dc2bbbe7267bd39ffc22f6346a4e4f88882badb98ed992d74"
+			url: "https://shelf.scandit.com/packages/pple-sdk-ios-1.7.0-beta.1.zip",
+			checksum: "936d427d589cfe2da3d59d03c030d2831665f7843bce5cb331221b58ccc00d28"
 		),
 		.binaryTarget(
 			name: "ScanditBarcodeCapture",
-			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-barcode-6.28.1-xcframework.zip",
-			checksum: "979434fbb67b6f96fed6b116921bc97958dead7c1c63db554053eb4e2aaf5ad1"
+			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-barcode-7.0.2-xcframework.zip",
+			checksum: "2b315cdb0912192707ca350f768cb344a91e47a8d4b56a3eaaacb4b4f852332a"
 		),
 		.binaryTarget(
 			name: "ScanditCaptureCore",
-			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-core-6.28.1-xcframework.zip",
-			checksum: "2d4ba0576d3c7a4e66d02aa9b8dfa956bbd99681a170b3adab76c150c29997bd"
+			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-core-7.0.2-xcframework.zip",
+			checksum: "ed3dc01d9676dc1a81616e9c08d557cfcafcf58184c4f877b480588d67f22251"
 		),
 		.binaryTarget(
 			name: "ScanditLabelCapture",
-			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-label-6.28.1-xcframework.zip",
-			checksum: "cf348c25ac58a2990877214ad02e8bdab9be1ef5e950cded1be670f76dac4816"
+			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-label-7.0.2-xcframework.zip",
+			checksum: "0688c46ecfd01441b1b6329a849815a82b69e3f4fed120ca2f3f78cf7607cef9"
 		),
 		.binaryTarget(
 			name: "ScanditPriceLabel",
-			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-label-plv-models-6.28.1-xcframework.zip",
-			checksum: "8031fcf5a99401145234363bbed89915b3f3e96d4e4ba990f37b86928e8722d7"
+			url: "https://ssl.scandit.com/sdk/download/scandit-datacapture-ios-label-plv-models-7.0.2-xcframework.zip",
+			checksum: "058d8f15f1300849609f30b5c85e3f4c6571b87554f14f84c2559a6b1d59fa46"
 		)
     ]
 )

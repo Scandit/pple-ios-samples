@@ -14,38 +14,14 @@
 
 import ScanditShelf
 
-extension LaserlineViewfinderStyle: CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
-    public typealias AllCases = [LaserlineViewfinderStyle]
-    public static var allCases: AllCases {
-        return [.legacy, .animated]
-    }
-
-    public var description: String {
-        switch self {
-        case .legacy:
-            return "Legacy"
-        case .animated:
-            return "Animated"
-        @unknown default:
-            preconditionFailure("Unhandled case - \(self)")
-        }
-    }
-
-    public var debugDescription: String {
-        return description.lowercased()
-    }
-}
-
 extension RectangularViewfinderStyle: CaseIterable, CustomStringConvertible, CustomDebugStringConvertible {
     public typealias AllCases = [RectangularViewfinderStyle]
     public static var allCases: AllCases {
-        return [.legacy, .square, .rounded]
+        return [.square, .rounded]
     }
 
     public var description: String {
         switch self {
-        case .legacy:
-            return "Legacy"
         case .square:
             return "Square"
         case .rounded:

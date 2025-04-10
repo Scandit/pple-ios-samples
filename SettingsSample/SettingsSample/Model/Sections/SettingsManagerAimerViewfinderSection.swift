@@ -12,7 +12,7 @@ final class SettingsManagerAimerViewfinderSection: SettingsManagerViewfinderSect
 
     var aimerViewfinder = AimerViewfinder()
 
-    /// Note: AimerViewfinderFrameColor is not part of the SDK, see LaserlineViewfinderDisabledColor.swift
+    /// Note: AimerViewfinderFrameColor is not part of the SDK
     var frameColor: AimerViewfinderFrameColor {
         get {
             let color = aimerViewfinder.frameColor
@@ -24,7 +24,7 @@ final class SettingsManagerAimerViewfinderSection: SettingsManagerViewfinderSect
         }
     }
 
-    /// Note: AimerViewfinderDotColor is not part of the SDK, see LaserlineViewfinderDisabledColor.swift
+    /// Note: AimerViewfinderDotColor is not part of the SDK
     var dotColor: AimerViewfinderDotColor {
         get {
             let color = aimerViewfinder.dotColor

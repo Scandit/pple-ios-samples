@@ -23,7 +23,6 @@ class ViewfinderDataSource: DataSource {
     }
 
     private var isRectangular: Bool { (rectangular.getValue?() as? Bool) == true }
-    private var isLaserline: Bool { (laserline.getValue?() as? Bool) == true }
     private var isAimer: Bool { (aimer.getValue?() as? Bool) == true }
 
     // MARK: - Sections
@@ -36,9 +35,8 @@ class ViewfinderDataSource: DataSource {
             case .widthAndHeight: sections.append(rectangularWidthAndHeight)
             case .widthAndHeightAspect: sections.append(rectangularWidthAndHeightAspect)
             case .heightAndWidthAspect: sections.append(rectangularHeightAndAspectRatio)
+            case .shorterDimensionAndAspectRatio: break
             }
-        } else if isLaserline {
-            sections.append(laserlineSettings)
         } else if isAimer {
             sections.append(aimerSettings)
         }
@@ -49,7 +47,7 @@ class ViewfinderDataSource: DataSource {
     // MARK: Section: Type
 
     lazy var viewfinderType: Section = {
-        return Section(title: "Type", rows: [none, rectangular, laserline, aimer])
+        return Section(title: "Type", rows: [none, rectangular, aimer])
     }()
 
     lazy var none: Row = {
@@ -66,15 +64,6 @@ class ViewfinderDataSource: DataSource {
             title: "Rectangular",
             getValue: { SettingsManager.current.viewfinderConfiguration.viewfinder is RectangularViewfinder },
             didSelect: { _, _ in SettingsManager.current.viewfinderConfiguration.viewfinder = RectangularViewfinder() },
-            dataSourceDelegate: self.delegate
-        )
-    }()
-
-    lazy var laserline: Row = {
-        return Row.option(
-            title: "Laserline",
-            getValue: { SettingsManager.current.viewfinderConfiguration.viewfinder is LaserlineViewfinder },
-            didSelect: { _, _ in SettingsManager.current.viewfinderConfiguration.viewfinder = LaserlineViewfinder() },
             dataSourceDelegate: self.delegate
         )
     }()
@@ -226,54 +215,6 @@ class ViewfinderDataSource: DataSource {
                     SettingsManager.current.rectangularViewfinder.heightAndAspectRatio = size
                 })
         ])
-    }()
-
-    // MARK: Section: Laserline Viewfinder Settings
-
-    lazy var laserlineSettings: Section = {
-        return Section(
-            title: "Laserline",
-            rows: [laserlineStyle, laserlineWidth, laserlineEnabledColor, laserlineDisabledColor]
-        )
-    }()
-
-    lazy var laserlineStyle: Row = {
-        return Row.choice(
-            title: "Style",
-            options: LaserlineViewfinderStyle.allCases,
-            getValue: { SettingsManager.current.laserlineViewfinder.style },
-            didChangeValue: { SettingsManager.current.laserlineViewfinder.style = $0 },
-            dataSourceDelegate: self.delegate
-        )
-    }()
-
-    lazy var laserlineWidth: Row = {
-        return Row.valueWithUnit(
-            title: "Width",
-            getValue: { SettingsManager.current.laserlineViewfinder.width },
-            didChangeValue: { SettingsManager.current.laserlineViewfinder.width = $0 },
-            dataSourceDelegate: self.delegate
-        )
-    }()
-
-    lazy var laserlineEnabledColor: Row = {
-        return Row.choice(
-            title: "Enabled Color",
-            options: LaserlineViewfinderEnabledColor.allCases,
-            getValue: { SettingsManager.current.laserlineViewfinder.enabledColor },
-            didChangeValue: { SettingsManager.current.laserlineViewfinder.enabledColor = $0 },
-            dataSourceDelegate: self.delegate
-        )
-    }()
-
-    lazy var laserlineDisabledColor: Row = {
-        return Row.choice(
-            title: "Disabled Color",
-            options: LaserlineViewfinderDisabledColor.allCases,
-            getValue: { SettingsManager.current.laserlineViewfinder.disabledColor },
-            didChangeValue: { SettingsManager.current.laserlineViewfinder.disabledColor = $0 },
-            dataSourceDelegate: self.delegate
-        )
     }()
 
     // MARK: Section: Aimer Viewfinder Settings
